@@ -692,9 +692,13 @@ class Model_Admin extends Kohana_Model
 
     public function getCart($params = [])
     {
-        $guestSql = !empty(Arr::get($params, 'guest_id')) ? ' and `c`.`guest_id` = :guest_id' : '';
-        $noticeSql = !empty(Arr::get($params, 'item')) ? ' and `c`.`notice_id` = :item' : '';
-        $idSql = !empty(Arr::get($params, 'id')) ? ' and `c`.`id` = :id' : '';
+		$guestId = Arr::get($params, 'guest_id');
+		$item = Arr::get($params, 'item');
+		$id = Arr::get($params, 'id');
+		
+        $guestSql = !empty($guestId) ? ' and `c`.`guest_id` = :guest_id' : '';
+        $noticeSql = !empty($item) ? ' and `c`.`notice_id` = :item' : '';
+        $idSql = !empty($id) ? ' and `c`.`id` = :id' : '';
 
         return DB::query(Database::SELECT, "
             select `c`.*, `n`.*, `c`.`id`, `n`.`id` as `notice_id`
@@ -706,10 +710,10 @@ class Model_Admin extends Kohana_Model
             $noticeSql
             $idSql
         ")
-            ->param(':guest_id', Arr::get($params, 'guest_id'))
-            ->param(':item', Arr::get($params, 'item'))
+            ->param(':guest_id', $guestId)
+            ->param(':item', $item)
             ->param(':show', Arr::get($params, 'show', 1))
-            ->param(':id', Arr::get($params, 'id'))
+            ->param(':id', $id)
             ->execute()
             ->as_array();
     }
