@@ -14,25 +14,33 @@ class Model_Notice extends Kohana_Model {
 		$rowLimit = Arr::get($params, 'limit', 0);
 		$startLimit = (Arr::get($params, 'page', 1) - 1) * $rowLimit;
 		$limit = empty($rowLimit) ? '' : "limit $startLimit, $rowLimit";
-		$priceSql = empty(Arr::get($params, 'price', 0)) ? '' : ' and `n`.`price` <= :price ';
-		$priceCountSql = empty(Arr::get($params, 'price', 0)) ? '' : ' and `nt`.`price` <= :price ';
+		
+		$price = Arr::get($params, 'price', 0);
+		$priceSql = empty($price) ? '' : ' and `n`.`price` <= :price ';
+		$priceCountSql = empty($price) ? '' : ' and `nt`.`price` <= :price ';
 		$names =  explode(' ', Arr::get($params, 'name', ''));
 		$nameSql = '';
 		$nameCountSql = '';
+		
 		foreach ($names as $name) {
 			$nameSql .= " and `n`.`name` like '%$name%' ";
 			$nameCountSql .= " and `nt`.`name` like '%$name%' ";
 		}
+		
 		$sort = Arr::get($params, 'sort', 'sort');
 		$order = Arr::get($params, 'order', 'asc');
-		if (!empty(Arr::get($params, 'id', 0))) {
+		
+		$id = Arr::get($params, 'id', 0);
+		$categoryId = Arr::get($params, 'category_id', 0);
+		
+		if (!empty($id)) {
 			$sql = "select `n`.*,
             (select `c`.`name` from `category` `c` where `c`.`id` = `n`.`category`) as `category_name`
             from `notice` `n`
             where `n`.`id` = :id
             and `n`.`status_id` = 1
             LIMIT 0,1";
-		} else if (!empty(Arr::get($params, 'category_id', 0))) {
+		} else if (!empty($categoryId)) {
 			$sql = "select `n`.*,
 			(select ceil(count(`nt`.`id`) / $rowLimit) from `notice` `nt` where `nt`.`category` = :category_id and `nt`.`status_id` = 1 $priceCountSql $nameCountSql) as `page_count`,
 			(select `c`.`name` from `category` `c` where `c`.`id` = `n`.`category`) as `category_name`
@@ -60,9 +68,9 @@ class Model_Notice extends Kohana_Model {
 		$noticeData = [];
 		$i = 0;
 		$res = DB::query(Database::SELECT, $sql)
-			->param(':id', Arr::get($params, 'id', 0))
-			->param(':category_id', Arr::get($params, 'category_id', 0))
-			->param(':price', Arr::get($params, 'price', 0))
+			->param(':id', $id)
+			->param(':category_id', $categoryId)
+			->param(':price', $price)
 			->execute()
 			->as_array();
 		foreach ($res as $row) {
