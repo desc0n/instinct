@@ -2,6 +2,7 @@ html {
     position: relative;
     min-height: 100%;
     color: #000;
+    font-family: "Times New Roman";
 }
 body {
     /* Margin bottom by footer height */
@@ -10,6 +11,9 @@ body {
 header {
     margin: 10px 0;
 }
+.menu-row {
+    margin-bottom: 20px;
+}
 .menu-item,
 .menu-item-active,
 .menu-item:visited,
@@ -17,12 +21,11 @@ header {
 .menu-item:hover,
 .menu-item-active:hover {
     display: inline-block;
-    width: 150px;
-    margin: 0 2px;
+    width: 152px;
+    margin: 0 3px;
     border-radius: 3px;
     text-align: center;
     padding: 10px;
-    font-family: "Times New Roman";
     color: #000;
     text-decoration: none;
     cursor: pointer;
@@ -33,4 +36,34 @@ header {
 }
 .menu-item-active {
     background: linear-gradient(to top, #E31E24, #F5B2B6, #E31E24);
+}
+.question {
+    width: 158px;
+    margin: 0 2px;
+    border-radius: 3px;
+    text-align: center;
+    border: 1px #000 solid;
+}
+.question p {
+    margin-bottom: 3px;
+}
+.question button {
+    display: inline-block;
+    margin: 0 15px;
+    border-radius: 1px;
+    text-align: center;
+    padding: 0 4px;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: #575858 0 0 2px;
+}
+.question button,
+.question button:hover {
+    color: #fff;
+}
+.question button.btn-yes {
+    background: radial-gradient(#F5B2B6, #E31E24);
+}
+.question button.btn-no {
+    background: radial-gradient(#A2D9F7, #56698F);
 }
