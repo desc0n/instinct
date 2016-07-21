@@ -1,0 +1,36 @@
+html {
+    position: relative;
+    min-height: 100%;
+    color: #000;
+}
+body {
+    /* Margin bottom by footer height */
+    background: none;
+}
+header {
+    margin: 10px 0;
+}
+.menu-item,
+.menu-item-active,
+.menu-item:visited,
+.menu-item-active:visited,
+.menu-item:hover,
+.menu-item-active:hover {
+    display: inline-block;
+    width: 150px;
+    margin: 0 2px;
+    border-radius: 3px;
+    text-align: center;
+    padding: 10px;
+    font-family: "Times New Roman";
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: #575858 0 0 2px;
+}
+.menu-item {
+    background: linear-gradient(to top, #C5C6C6, #ffffff, #C5C6C6);
+}
+.menu-item-active {
+    background: linear-gradient(to top, #E31E24, #F5B2B6, #E31E24);
+}

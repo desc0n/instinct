@@ -355,42 +355,6 @@ class Model_Admin extends Kohana_Model
 			->execute();
 	}
 
-    public function getMenu($mid = null, $id = null)
-    {
-        if ($mid !== null && $id === null) {
-            return DB::query(Database::SELECT, "
-                select `m`.*,
-                (select `p`.`title` from `pages` `p` where `p`.`id` = `m`.`page_id` limit 0,1) as `name`
-                from `menu` `m`
-                where `m`.`parent_id` = :id
-                and `m`.`status_id` = 1
-            ")
-                ->param(':id', $mid)
-                ->execute()
-                ->as_array();
-        } elseif ($id !== null) {
-            return DB::query(Database::SELECT, "
-                select `m`.*,
-                (select `p`.`title` from `pages` `p` where `p`.`id` = `m`.`page_id` limit 0,1) as `name`
-                from `menu` `m`
-                where `m`.`id` = :id
-            ")
-                ->param(':id', $id)
-                ->execute()
-                ->as_array();
-        } else {
-            return DB::query(Database::SELECT, "
-                select `m`.*,
-                (select `p`.`title` from `pages` `p` where `p`.`id` = `m`.`page_id` limit 0,1) as `name`
-                from `menu` `m`
-                where `m`.`parent_id` is null
-                and `m`.`status_id` = 1
-            ")
-                ->execute()
-                ->as_array();
-        }
-    }
-
     public function addMenu($params = [])
     {
         $res = DB::query(Database::INSERT, "insert into `pages` (`title`) values (:name)")
