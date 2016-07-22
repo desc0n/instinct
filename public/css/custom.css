@@ -127,3 +127,16 @@ header {
     border-color: #000;
     display: inline-block;
 }
+.category-btns a {
+    display: inline-block;
+    width: 156px;
+    margin: 0 3px;
+    border-radius: 5px;
+    background-color: #E31E24;
+    height: 40px;
+    padding: 5px;
+    text-align: center;
+}
+.category-btns a img {
+    height: 100%;
+}

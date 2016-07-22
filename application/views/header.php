@@ -43,5 +43,14 @@
                 </div>
             </div>
         </div>
+        <div class="row category-btns">
+            <a href="#"><img src="/public/i/for_her.png"></a>
+            <a href="#"><img src="/public/i/for_him.png"></a>
+            <a href="#"><img src="/public/i/for_two.png"></a>
+            <a href="#"><img src="/public/i/gifts.png"></a>
+            <a href="#"><img src="/public/i/novelty.png"></a>
+            <a href="#"><img src="/public/i/linen.png"></a>
+            <a href="#"><img src="/public/i/aphrodisiacs.png"></a>
+        </div>
     </div>
 </header>
