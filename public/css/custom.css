@@ -11,6 +11,7 @@ body {
 header {
     margin: 10px 0;
 }
+
 .menu-row {
     margin-bottom: 20px;
 }
@@ -21,7 +22,7 @@ header {
 .menu-item:hover,
 .menu-item-active:hover {
     display: inline-block;
-    width: 152px;
+    width: 153px;
     margin: 0 3px;
     border-radius: 3px;
     text-align: center;
@@ -38,8 +39,8 @@ header {
     background: linear-gradient(to top, #E31E24, #F5B2B6, #E31E24);
 }
 .question {
-    width: 158px;
-    margin: 0 2px;
+    width: 100%;
+    margin: 0;
     border-radius: 3px;
     text-align: center;
     border: 1px #000 solid;
@@ -66,4 +67,63 @@ header {
 }
 .question button.btn-no {
     background: radial-gradient(#A2D9F7, #56698F);
+}
+.btn-input,
+.btn-input:hover,
+.btn-input:visited {
+    width: 100%;
+    margin: 0;
+    border-radius: 3px;
+    text-align: center;
+    padding: 15px 10px;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: #575858 0 0 2px;
+    background: linear-gradient(to top, #E31E24, #F5B2B6, #E31E24);
+}
+.news-articles {
+    width: 100%;
+    margin: 10px 0;
+    border-radius: 3px;
+    text-align: center;
+    padding: 10px;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: #575858 0 0 2px;
+    background: linear-gradient(to top, #C5C6C6, #ffffff, #C5C6C6);
+    height: 250px;
+}
+.news-articles h2{
+    margin: 5px 0;
+}
+.header-img {
+    width: 100%;
+}
+.header-phone {
+    color: #000;
+    text-align: center;
+    font-weight: bold;
+}
+.header-search {
+    border-radius: 3px;
+    background-color: #000;
+    padding: 4px;
+    margin: auto;
+}
+.header-search .input-group {
+    width: 80%;
+    float: left;
+}
+.header-search .btn-warning {
+    width: 20%;
+    background-color: #FFED00;
+    color: #E31E24;
+    font-weight: bold;
+}
+.header-search input[type=text],
+.header-search button {
+    border-color: #000;
+    display: inline-block;
 }
