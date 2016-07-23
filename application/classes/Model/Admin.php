@@ -18,27 +18,6 @@ class Model_Admin extends Kohana_Model
 		DB::query(Database::UPDATE, "SET time_zone = '+10:00'")->execute();
 	}
 
-	public function getCategory($cid = null, $id = null)
-	{
-        $data = [];
-
-        if ($cid !== null && $id === null) {
-            return DB::query(Database::SELECT, "select * from `category` where `parent_id` = :id")
-                ->param(':id', $cid)
-                ->execute()
-                ->as_array();
-        } elseif ($id !== null) {
-            return DB::query(Database::SELECT, "select * from `category` where `id` = :id")
-                ->param(':id', $id)
-                ->execute()
-                ->as_array();
-        } else {
-            return DB::query(Database::SELECT, "select * from `category` where `parent_id` is null")
-                ->execute()
-                ->as_array();
-        }
-	}
-
 	public function addCategory($params = [])
 	{
 		$res = DB::query(Database::INSERT, "insert into `category` (`name`, `parent_id`) values (:name, :parent_id)")

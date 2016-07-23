@@ -12,6 +12,7 @@ class Controller_Index extends Controller_Base
 
 		return View::factory('template')
 			->set('menu', $contentModel->getMenu())
+			->set('categories', $contentModel->getCategory())
 		;
 	}
 

@@ -27,7 +27,45 @@
     ->set('menu', $menu)
     ->set('rootPage', 'main')
 ;?>
-<?=$content;?>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="catalog-list">
+                <h3 class="text-center">Каталог</h3>
+                <?foreach ($categories as $category) {?>
+                <a href="#"><?=$category['name'];?></a>
+                <?}?>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="market">
+            <?=$content;?>
+            </div>
+        </div>
+        <div class="col-lg-1">
+            <div class="cards">
+                <div class="cards-title">ФОРМА ОПЛАТЫ</div>
+                <div class="cards-list">
+                    <img src="/public/i/visa.png">
+                    <img src="/public/i/master_card.png">
+                    <img src="/public/i/golden_crown.png">
+                    <img src="/public/i/maestro.png">
+                </div>
+            </div>
+            <div class="accounts">
+                <a href="#"><img src="/public/i/facebook.png"></a>
+                <a href="#"><img src="/public/i/ok.png"></a>
+                <a href="#"><img src="/public/i/instagram.png"></a>
+                <a href="#"><img src="/public/i/vk.png"></a>
+                <a href="#"><img src="/public/i/mail.png"></a>
+                <a href="#"><img src="/public/i/google.png"></a>
+                <a href="#"><img src="/public/i/yandex.png"></a>
+                <a href="#"><img src="/public/i/f_account.png"></a>
+                <a href="#"><img src="/public/i/ebay.png"></a>
+            </div>
+        </div>
+    </div>
+</div>
 <?=View::factory('footer');?>
 </body>
 <!-- Include all compiled plugins (below), or include individual files as needed -->

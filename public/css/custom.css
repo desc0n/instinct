@@ -85,7 +85,7 @@ header {
 .news-articles {
     width: 100%;
     margin: 10px 0;
-    border-radius: 3px;
+    border-radius: 5px;
     text-align: center;
     padding: 10px;
     color: #000;
@@ -139,4 +139,54 @@ header {
 }
 .category-btns a img {
     height: 100%;
+}
+.catalog-list {
+    background-color: #727271;
+    border-radius: 5px;
+    padding: 3px;
+    margin-top: 10px;
+}
+.catalog-list h3 {
+    color: #fff;
+    margin: 5px 0;
+}
+.catalog-list a,
+.catalog-list a:hover,
+.catalog-list a:visited {
+    display: block;
+    background: linear-gradient(to top, #727271, #E31E24);
+    padding: 4px;
+    color: #fff;
+    margin: 1px 0;
+    font-size: 16px;
+}
+.cards, .accounts {
+    border-radius: 5px;
+    text-align: center;
+    border: #898989 solid 2px;
+    background-color: #D9DADA;
+    margin-top: 10px;
+}
+.accounts {
+    padding: 8px 0;
+}
+.cards-title {
+    background-color: #E31E24;
+    color: #fff;
+    font-size: 10px;
+    margin-bottom: 3px;
+}
+.cards-list img {
+    width: calc(100% - 4px);
+    margin: 2px;
+}
+.accounts img {
+    width: calc(80% - 4px);
+    margin: 2px;
+}
+.market {
+    background-image: url("/public/i/market_fon.png");
+    background-repeat: repeat;
+    min-height: 600px;
+    border-radius: 5px;
 }
