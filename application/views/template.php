@@ -39,7 +39,8 @@
         </div>
         <div class="col-lg-8">
             <div class="market">
-            <?=$content;?>
+                <?=$content;?>
+                <?=View::factory('footer');?>
             </div>
         </div>
         <div class="col-lg-1">
@@ -66,7 +67,6 @@
         </div>
     </div>
 </div>
-<?=View::factory('footer');?>
 </body>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="/public/js/bootstrap.js"></script>

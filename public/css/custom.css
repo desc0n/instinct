@@ -155,7 +155,7 @@ header {
 .catalog-list a:visited {
     display: block;
     background: linear-gradient(to top, #727271, #E31E24);
-    padding: 4px;
+    padding: 6px 4px;
     color: #fff;
     margin: 1px 0;
     font-size: 16px;
@@ -187,6 +187,79 @@ header {
 .market {
     background-image: url("/public/i/market_fon.png");
     background-repeat: repeat;
-    min-height: 600px;
     border-radius: 5px;
+}
+.market-content {
+    min-height: 660px;
+    padding-top: 20px;
+}
+footer {
+    padding-bottom: 10px;
+}
+footer h2 {
+    color: #000;
+}
+.last-see-items-row {
+    width: 100%;
+    min-height: 250px;
+}
+.item-thumb-parent {
+    margin: 10px 30px;
+    padding: 0;
+    text-align: center;
+}
+.item-thumb {
+    border-radius: 5px;
+    text-align: center;
+    border: #000 solid 2px;
+    background-color: #fff;
+    min-height: 150px;
+    width: 100%;
+}
+.like {
+    color: #E31E24;
+    font-size: 12px;
+    margin-top: 3px;
+}
+.like img {
+    width: 20px;
+}
+.btn-sale {
+    background: #E31E24;
+    color: #fff;
+    margin-top: 5px;
+}
+.btn-sale img {
+    width: 15px;
+}
+.pagination-row {
+    background: #898989;
+    color: #fff;
+    padding: 3px 20px 3px 0;
+    text-align: right;
+}
+.btn-pagination {
+    padding: 4px 10px;
+    background: #2B2A29;
+    color: #fff;
+    border: none;
+    margin: 0 1px;
+}
+.footer-warning {
+    color: #fff;
+    border-radius: 5px;
+    text-align: justify;
+    background: #000;
+    width: 90%;
+    margin: auto;
+    padding: 7px 20px;
+}
+.footer-warning h4{
+    margin-bottom: 30px;
+    padding: 10px 0;
+}
+.footer-warning img{
+    width: 50px;
+    margin: 10px;
+    margin-top: -5px;
 }
