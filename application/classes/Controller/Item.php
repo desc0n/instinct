@@ -24,17 +24,23 @@ class Controller_Item extends Controller_Base
 
 	public function action_sale()
 	{
-		$template=View::factory("template");
+		/** @var $contentModel Model_Content */
+		$contentModel = Model::factory('Content');
+		
+		$template=View::factory('emplate');
 		$id = $this->request->param('id');
 		$_GET['id'] = $id;
 		$notice = Model::factory('Notice')->getNoticeSale($_GET);
 		$notice_info = (!empty($notice) ? $notice[0] : []);
 		$params['category_id'] = 5;
-		$template->content=View::factory("item_sale")
-			->set('categoryArr', Model::factory('Admin')->getCategory($params))
+		
+		$template->content = View::factory('item_sale')
+			->set('categoryArr', $contentModel->getCategory($params))
 			->set('notice_info', $notice_info)
 			->set('params', $params)
-			->set('id', $id);
+			->set('id', $id)
+		;
+		
 		$this->response->body($template);
 	}
 

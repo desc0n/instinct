@@ -1,8 +1,9 @@
 <?
-/**
- * @var $adminModel Model_Admin
- */
+/** @var $adminModel Model_Admin */
 $adminModel = Model::factory('Admin');
+
+/** @var $contentModel Model_Content */
+$contentModel = Model::factory('Content');
 ?>
 <!-- Begin page content -->
 <div class="container">
@@ -11,8 +12,8 @@ $adminModel = Model::factory('Admin');
         <div class="col-sm-10 col-xs-10 col-sm-10 category-container">
             <div class="xs-category-list">
                 <div class="top-border"></div>
-                <?foreach($adminModel->getCategory() as $group_1_data){
-                    $group2 = $adminModel->getCategory($group_1_data['id']);
+                <?foreach($contentModel->getCategory() as $group_1_data){
+                    $group2 = $contentModel->getCategory($group_1_data['id']);
                     $groupsIn = [];
 
                     foreach ($group2 as $group_2_data) {
@@ -63,8 +64,8 @@ $adminModel = Model::factory('Admin');
             </div>
             <div class="col-md-2 col-xs-2 col-sm-2 category-list">
                 <div class="top-border"></div>
-                <?foreach($adminModel->getCategory() as $group_1_data){
-                    $group2 = $adminModel->getCategory($group_1_data['id']);?>
+                <?foreach($contentModel->getCategory() as $group_1_data){
+                    $group2 = $contentModel->getCategory($group_1_data['id']);?>
                     <div class="slide-trigger">
                         <div class="catalog-link">
                             <div class="panel-heading collapsed">

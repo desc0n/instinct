@@ -1,3 +1,7 @@
+<?
+/** @var $contentModel Model_Content */
+$contentModel = Model::factory('Content');
+?>
 <div class="row">
     <h2 class="sub-header col-sm-12">Популярные товары</h2>
     <div class="col-sm-11 redact-form">
@@ -64,7 +68,7 @@
             <div class="modal-body">
                 <div class="col-sm-4 left-nav">
                     <div class="">
-                        <?foreach(Model::factory('Admin')->getCategory() as $group_1_data){?>
+                        <?foreach($contentModel->getCategory() as $group_1_data){?>
                             <div class="slide-trigger">
                                 <div class="catalog-link">
                                     <div class="panel-heading collapsed">

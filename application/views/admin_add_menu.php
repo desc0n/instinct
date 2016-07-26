@@ -1,3 +1,7 @@
+<?
+/** @var $contentModel Model_Content */
+$contentModel = Model::factory('Content');
+?>
 <div class="row add-category">
     <h2 class="sub-header col-sm-12">Меню "Введение"</h2>
     <div class="col-sm-11">
@@ -12,7 +16,7 @@
                 </div>
                 <div id="collapse" class="panel-collapse collapse">
                     <div class="panel-body product-menu-panel-body">
-                        <?foreach(Model::factory('Admin')->getMenu(1) as $menu_1_data){?>
+                        <?foreach($contentModel->getMenu(1) as $menu_1_data){?>
                             <div class="row-accordion">
                                 <div class="panel-menu" id="accordion1<?=$menu_1_data['id'];?>">
                                     <div class="panel panel-default">
@@ -31,7 +35,7 @@
                                         </div>
                                         <div id="collapse1<?=$menu_1_data['id'];?>" class="panel-collapse collapse">
                                             <div class="panel-body product-menu-panel-body">
-                                                <?foreach (Model::factory('Admin')->getMenu($menu_1_data['id']) as $menu_2_data){?>
+                                                <?foreach ($contentModel->getMenu($menu_1_data['id']) as $menu_2_data){?>
                                                     <div class="row-accordion">
                                                         <div class="panel-menu" id="accordion2<?=$menu_2_data['id'];?>">
                                                             <div class="panel panel-default">

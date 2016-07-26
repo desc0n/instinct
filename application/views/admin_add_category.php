@@ -1,3 +1,7 @@
+<?
+/** @var $contentModel Model_Content */
+$contentModel = Model::factory('Content');
+?>
 <div class="row add-category">
     <h2 class="sub-header col-sm-12">Категории товаров:</h2>
     <div class="col-sm-11">
@@ -12,7 +16,7 @@
                 </div>
                 <div id="collapse" class="panel-collapse collapse in">
                     <div class="panel-body product-group-panel-body">
-                        <?foreach(Model::factory('Admin')->getCategory() as $group_1_data){?>
+                        <?foreach($contentModel->getCategory() as $group_1_data){?>
                             <div class="row-accordion">
                                 <div class="panel-group" id="accordion1<?=$group_1_data['id'];?>">
                                     <div class="panel panel-default">
@@ -30,7 +34,7 @@
                                         </div>
                                         <div id="collapse1<?=$group_1_data['id'];?>" class="panel-collapse collapse">
                                             <div class="panel-body product-group-panel-body">
-                                                <?foreach (Model::factory('Admin')->getCategory($group_1_data['id']) as $group_2_data){?>
+                                                <?foreach ($contentModel->getCategory($group_1_data['id']) as $group_2_data){?>
                                                     <div class="row-accordion">
                                                         <div class="panel-group" id="accordion2<?=$group_2_data['id'];?>">
                                                             <div class="panel panel-default">
@@ -48,7 +52,7 @@
                                                                 </div>
                                                                 <div id="collapse2<?=$group_2_data['id'];?>" class="panel-collapse collapse">
                                                                     <div class="panel-body product-group-panel-body">
-                                                                        <?foreach(Model::factory('Admin')->getCategory($group_2_data['id']) as $group_3_data){?>
+                                                                        <?foreach($contentModel->getCategory($group_2_data['id']) as $group_3_data){?>
                                                                             <div class="row-accordion">
                                                                                 <div class="panel-group" id="accordion3<?=$group_3_data['id'];?>">
                                                                                     <div class="panel panel-default">

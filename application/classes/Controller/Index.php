@@ -5,9 +5,7 @@ class Controller_Index extends Controller_Base
 
 	private function getBaseTemplate()
 	{
-		/**
-		 * @var $contentModel Model_Content
-		 */
+		/** @var $contentModel Model_Content */
 		$contentModel = Model::factory('Content');
 
 		return View::factory('template')
