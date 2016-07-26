@@ -1,14 +1,14 @@
 <div class="market-content">
     <div class="col-lg-12">
-        <?=View::factory('item_thumb');?>
-        <?=View::factory('item_thumb');?>
-        <?=View::factory('item_thumb');?>
-        <?=View::factory('item_thumb');?>
-        <?=View::factory('item_thumb');?>
-        <?=View::factory('item_thumb');?>
-        <?=View::factory('item_thumb');?>
-        <?=View::factory('item_thumb');?>
-        <?=View::factory('item_thumb');?>
+        <?=View::factory('item_thumb')->set('itemData', []);?>
+        <?=View::factory('item_thumb')->set('itemData', []);?>
+        <?=View::factory('item_thumb')->set('itemData', []);?>
+        <?=View::factory('item_thumb')->set('itemData', []);?>
+        <?=View::factory('item_thumb')->set('itemData', []);?>
+        <?=View::factory('item_thumb')->set('itemData', []);?>
+        <?=View::factory('item_thumb')->set('itemData', []);?>
+        <?=View::factory('item_thumb')->set('itemData', []);?>
+        <?=View::factory('item_thumb')->set('itemData', []);?>
     </div>
 </div>
 <div class="pagination-row">

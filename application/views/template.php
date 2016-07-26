@@ -40,7 +40,9 @@
         <div class="col-lg-8">
             <div class="market">
                 <?=$content;?>
-                <?=View::factory('footer');?>
+                <?=View::factory('footer')
+                    ->set('lastSeeItems', $lastSeeItems)
+                ;?>
             </div>
         </div>
         <div class="col-lg-1">

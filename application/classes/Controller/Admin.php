@@ -217,7 +217,6 @@ class Controller_Admin extends Controller {
                 }
 
                 $admin_content = View::factory('admin_redact_main_page')
-                    ->set('hitsData', $noticeModel->findHits())
                     ->set('pageData', $adminModel->getPage(['id' => 3]))
                     ->set('get', $_GET);
 			} else if ($page == 'redact_catalogs') {

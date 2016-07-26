@@ -2,23 +2,28 @@
 
 class Controller_Item extends Controller_Base
 {
-
 	public function action_show()
 	{
-        /**
-         * @var $noticeModel Model_Notice
-         */
+		/** @var $contentModel Model_Content */
+		$contentModel = Model::factory('Content');
+
+        /** @var $noticeModel Model_Notice */
         $noticeModel = Model::factory('Notice');
 
-        $template=View::factory("template");
 		$id = $this->request->param('id');
 		$_GET['id'] = $id;
 		$notice = $noticeModel->getNotice($_GET);
-		$notice_info = (!empty($notice) ? $notice[0] : []);
-		$template->content=View::factory("item")
-			->set('notice_info', $notice_info)
-            ->set('noticeParams', $noticeModel->getNoticeParams($_GET))
-			->set('id', $id);
+		$itemData = (!empty($notice) ? $notice[0] : []);
+
+		View::set_global('title', Arr::get($itemData, 'name'));
+
+		$template = $contentModel->getBaseTemplate();
+
+		$template->content=View::factory('item')
+			->set('itemData', $itemData)
+			->set('id', $id)
+		;
+
 		$this->response->body($template);
 	}
 
@@ -31,12 +36,12 @@ class Controller_Item extends Controller_Base
 		$id = $this->request->param('id');
 		$_GET['id'] = $id;
 		$notice = Model::factory('Notice')->getNoticeSale($_GET);
-		$notice_info = (!empty($notice) ? $notice[0] : []);
+		$itemData = (!empty($notice) ? $notice[0] : []);
 		$params['category_id'] = 5;
 		
 		$template->content = View::factory('item_sale')
 			->set('categoryArr', $contentModel->getCategory($params))
-			->set('notice_info', $notice_info)
+			->set('itemData', $itemData)
 			->set('params', $params)
 			->set('id', $id)
 		;

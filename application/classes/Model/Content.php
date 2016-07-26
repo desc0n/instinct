@@ -5,6 +5,18 @@
  */
 class Model_Content extends Kohana_Model
 {
+    public function getBaseTemplate()
+    {
+        /** @var $noticeModel Model_Notice */
+        $noticeModel = Model::factory('Notice');
+
+        return View::factory('template')
+            ->set('menu', $this->getMenu())
+            ->set('categories', $this->getCategory())
+            ->set('lastSeeItems', $noticeModel->findLastSeeItems())
+            ;
+    }
+    
     /**
      * @param null|int $mid
      * @param null|int $id

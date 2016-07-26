@@ -9,16 +9,24 @@ class Model_Notice extends Kohana_Model {
 	    DB::query(Database::UPDATE,"SET time_zone = '+10:00'")->execute();
     }
 
+	/**
+	 * @param array $params
+	 *
+	 * @return array
+	 */
 	public function getNotice($params = [])
 	{
+		$name = Arr::get($params, 'name');
+		$page = Arr::get($params, 'page', 1);
+
 		$rowLimit = Arr::get($params, 'limit', 0);
-		$startLimit = (Arr::get($params, 'page', 1) - 1) * $rowLimit;
+		$startLimit = ($page - 1) * $rowLimit;
 		$limit = empty($rowLimit) ? '' : "limit $startLimit, $rowLimit";
 		
 		$price = Arr::get($params, 'price', 0);
 		$priceSql = empty($price) ? '' : ' and `n`.`price` <= :price ';
 		$priceCountSql = empty($price) ? '' : ' and `nt`.`price` <= :price ';
-		$names =  explode(' ', Arr::get($params, 'name', ''));
+		$names =  !empty($name) ? explode(' ', $name) : [];
 		$nameSql = '';
 		$nameCountSql = '';
 		
@@ -65,20 +73,27 @@ class Model_Notice extends Kohana_Model {
 			order by `$sort` $order
 			$limit";
 		}
+
 		$noticeData = [];
 		$i = 0;
+
 		$res = DB::query(Database::SELECT, $sql)
-			->param(':id', $id)
-			->param(':category_id', $categoryId)
-			->param(':price', $price)
+			->parameters([
+				':id' => $id,
+				':category_id' => $categoryId,
+				':price' => $price
+			])
 			->execute()
-			->as_array();
+			->as_array()
+		;
+
 		foreach ($res as $row) {
 			$noticeData[$i] = $row;
 			$noticeData[$i]['imgs'] = $this->getNoticeImg($row);
 			$noticeData[$i]['files'] = $this->getNoticeFile($row);
 			$i++;
 		}
+
 		return $noticeData;
 	}
 
@@ -215,25 +230,19 @@ class Model_Notice extends Kohana_Model {
 			->execute();
 	}
 
-    public function findHits($params = [])
-    {
-        $data = [];
+	public function findLastSeeItems()
+	{
+		$data = [];
 
-        $idSql = Arr::get($params, 'id') != null ? ' and `id` = :id' : '';
+		$notices = $this->getNotice();
 
-        $res = DB::query(Database::SELECT, "SELECT * FROM `hits` WHERE 1 $idSql")
-            ->param(':id', Arr::get($params, 'id'))
-            ->execute()
-            ->as_array();
+		array_splice($notices, 4);
+		
+		foreach ($notices as $notice) {
+			$data[] = $notice;
+		}
 
-        foreach ($res as $row) {
-            $noticeData = Arr::get($this->getNotice(['id' => $row['notice_id']]), 0, []);
-            if (!empty($noticeData)) {
-                $data[] = $noticeData;
-            }
-        }
-
-        return $data;
-    }
+		return $data;
+	}
 }
 ?>

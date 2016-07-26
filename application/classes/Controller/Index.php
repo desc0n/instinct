@@ -2,37 +2,16 @@
 
 class Controller_Index extends Controller_Base
 {
-
-	private function getBaseTemplate()
-	{
-		/** @var $contentModel Model_Content */
-		$contentModel = Model::factory('Content');
-
-		return View::factory('template')
-			->set('menu', $contentModel->getMenu())
-			->set('categories', $contentModel->getCategory())
-		;
-	}
-
 	public function action_index()
 	{
-        /**
-         * @var $contentModel Model_Content
-         */
+        /** @var $contentModel Model_Content */
         $contentModel = Model::factory('Content');
-
-        /**
-         * @var $noticeModel Model_Notice
-         */
-        $noticeModel = Model::factory('Notice');
 
         View::set_global('title', 'Главная');
 
-		$template = $this->getBaseTemplate();
+		$template = $contentModel->getBaseTemplate();
 
-		$template->content = View::factory('index')
-
-		;
+		$template->content = View::factory('index');
 
 		$this->response->body($template);
 	}

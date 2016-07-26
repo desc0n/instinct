@@ -216,6 +216,18 @@ footer h2 {
     min-height: 150px;
     width: 100%;
 }
+.item-thumb-img {
+    padding: 5px;
+}
+.item-thumb-img a,
+.item-thumb-img a:hover,
+.item-thumb-img a:visited {
+    border: none;
+    text-decoration: none;
+}
+.item-thumb-img img {
+    width: 100%;
+}
 .like {
     color: #E31E24;
     font-size: 12px;
@@ -262,4 +274,39 @@ footer h2 {
     width: 50px;
     margin: 10px;
     margin-top: -5px;
+}
+.item-content {
+    padding: 5px;
+    color: #000;
+}
+.item-large {
+    width: 260px;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+.item-small {
+    width: 120px;
+    min-height: 120px;
+    margin: 5px;
+    background: #ffffff;
+}
+.item-large{
+    border: 1px solid #E3E3E3;
+}
+
+.item-small{
+    border: 1px solid #E3E3E3;
+    float: left;
+}
+
+.item-small > img{
+    width: 100%;
+}
+.item-small:hover{
+    cursor: pointer;
+    border: 1px solid #777;
+}
+.item-price {
+    font-size: 26px;
+    color: #E31E24;
 }

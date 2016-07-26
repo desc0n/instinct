@@ -2,10 +2,9 @@
     <h2 class="text-center"><strong>НЕДАВНО ПРОСМОТРЕННЫЙ ТОВАР</strong></h2>
     <div class="last-see-items">
         <div class="last-see-items-row">
-            <?=View::factory('item_thumb');?>
-            <?=View::factory('item_thumb');?>
-            <?=View::factory('item_thumb');?>
-            <?=View::factory('item_thumb');?>
+            <?foreach ($lastSeeItems as $itemData) {?>
+            <?=View::factory('item_thumb')->set('itemData', $itemData);?>
+            <?}?>
         </div>
     </div>
     <div class="footer-warning">
