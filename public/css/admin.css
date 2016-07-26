@@ -39,6 +39,10 @@
 }
 .redact-form .imgs-form .img-link {
     margin-left:10px;
+    display: block;
+}
+.imgs-form {
+    background: #d5d5d5;
 }
 .imgs-form .glyphicon {
     cursor: pointer;

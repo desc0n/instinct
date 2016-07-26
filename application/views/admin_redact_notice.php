@@ -26,7 +26,7 @@
                 <th class="text-left">Фото</th>
                 <td class="imgs-form">
                     <?foreach(Arr::get($notice_info,'imgs',[]) as $img){?>
-                        <div class="img-link pull-left" data-toggle="tooltip" data-placement="left" data-html="true" title="<img class='tooltip-img' src='/public/img/original/<?=$img['src'];?>' style='width:200px;'>">
+                        <div class="img-link">
                             <img src="/public/img/thumb/<?=$img['src'];?>">
                             <span class="pull-right glyphicon glyphicon-remove" title="удалить" onclick="$('#remove_img > #removeimg').val(<?=$img['id'];?>);$('#remove_img').submit();"></span>
                         </div>
@@ -34,37 +34,6 @@
                     <button class="btn btn-primary" onclick="$('#loadimg_modal').modal('toggle');"><span class="pull-right glyphicon glyphicon-plus"></span></button>
                 </td>
             </tr>
-        </table>
-        <h2 class="sub-header col-sm-12">Характеристики товара:</h2>
-        <table class="table params-table">
-            <tr>
-                <th class="text-center">Название характеристики</th>
-                <th class="text-center">Значение характеристики</th>
-                <th class="text-center">Действия</th>
-            </tr>
-            <?foreach($noticeParams as $paramsData){?>
-                <tr>
-                    <td><?=$paramsData['name'];?></td>
-                    <td><?=$paramsData['value'];?></td>
-                    <td class="text-center">
-                        <form method="post">
-                            <button class="btn btn-danger" type="submit" name="removeProductParam" value="<?=$paramsData['id'];?>"><span class="glyphicon glyphicon-remove"></span></button>
-                        </form>
-                    </td>
-                </tr>
-            <?}?>
-            <form class="form-inline" role="form" method="post">
-                <td>
-                    <input type="text" class="form-control" name="newParamsName" value="">
-                </td>
-                <td>
-                    <input type="text" class="form-control" name="newParamsValue" value="">
-                </td>
-                <td class="text-center">
-                    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
-                    <input type="hidden" name="newNoticeParam" value="<?=$notice_id;?>">
-                </td>
-            </form>
         </table>
         <button class="btn btn-success" onclick="$('#redactproduct_form').submit();">Сохранить</button>
     </div>
