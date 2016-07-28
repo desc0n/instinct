@@ -7,7 +7,7 @@
 
                 $slug = str_replace('main', '', $slug);
                 ?>
-            <a class="<?=$class;?>" href="/<?=$slug;?>"><?=$menuData['name'];?></a>
+            <a class="<?=$class;?>" href="/page/<?=$slug;?>"><?=$menuData['name'];?></a>
             <?}?>
         </div>
         <div class="row">

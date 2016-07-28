@@ -5,7 +5,10 @@
 		<div class="col-sm-6">
 			<select class="form-control" name="id">
 				<option value="0">не выбрано</option>
-                <?foreach($pages as $page) {?>
+                <?foreach($pages as $page) {
+					if(!$page['redact']) {
+						continue;
+					}?>
 				<option value="<?=$page['id'];?>" <?=(Arr::get($get, 'id', 0) == $page['id'] ? 'selected' : '');?>><?=$page['title'];?></option>
                 <?}?>
 			</select>
@@ -13,7 +16,7 @@
 		<button class="btn btn-default" type="submit">Выбрать</button>
 	</form>
 	</p>
-	<form class="form-horizontal row" style="display:inline-block;margin-left:40px;" method="post" action="/admin/control_panel/redact_page">
+	<form class="form-horizontal row" style="display:inline-block;margin-left:40px;" method="post">
 		<p>
 			<div class="row">
 				<h3>Редактируем страницу</h3>

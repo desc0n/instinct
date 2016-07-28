@@ -20,16 +20,15 @@ class Controller_Admin extends Controller {
 
 	public function action_control_panel()
 	{
-        /**
-         * @var $adminModel Model_Admin
-         */
+        /** @var $adminModel Model_Admin */
         $adminModel = Model::factory('Admin');
 
-        /**
-         * @var $noticeModel Model_Notice
-         */
+        /** @var $noticeModel Model_Notice */
         $noticeModel = Model::factory('Notice');
 
+		/** @var $contentModel Model_Content */
+		$contentModel = Model::factory('Content');
+		
 		if (Auth::instance()->logged_in() && isset($_POST['logout'])) {
 			Auth::instance()->logout();
 			HTTP::redirect('/');
@@ -217,7 +216,7 @@ class Controller_Admin extends Controller {
                 }
 
                 $admin_content = View::factory('admin_redact_main_page')
-                    ->set('pageData', $adminModel->getPage(['id' => 3]))
+                    ->set('pageData', $contentModel->getPage(['id' => 3]))
                     ->set('get', $_GET);
 			} else if ($page == 'redact_catalogs') {
                 $filename=Arr::get($_FILES, 'filename', '');
@@ -238,13 +237,14 @@ class Controller_Admin extends Controller {
 			} else if ($page == 'redact_page') {
 				if (isset($_POST['redactpage'])) {
 					$adminModel->setPage($_POST);
-					HTTP::redirect('/admin/control_panel/redact_page?id=' . Arr::get($_POST, 'redactpage', 0));
+					HTTP::redirect($this->request->referrer());
 				}
 
 				$admin_content = View::factory('admin_redact_page')
-					->set('pages', $adminModel->getPages())
-					->set('pageData', $adminModel->getPage($_GET))
-					->set('get', $_GET);
+					->set('pages', $contentModel->getPages())
+					->set('pageData', $contentModel->getPage($_GET))
+					->set('get', $_GET)
+				;
 			} else if ($page == 'add_category') {
 				if (isset($_POST['addgroup'])) {
                     $adminModel->addCategory($_POST);

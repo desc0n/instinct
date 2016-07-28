@@ -100,4 +100,48 @@ class Model_Content extends Kohana_Model
             ;
         }
     }
+
+    /**
+     * @return array
+     */
+    public function getPages()
+    {
+        return DB::select('p.*')
+            ->from(['pages', 'p'])
+            ->join(['menu', 'm'])
+            ->on('m.page_id', '=', 'p.id')
+            ->where('m.status_id', '=', 1)
+            ->execute()
+            ->as_array()
+        ;
+    }
+
+    public function getPage($params = [])
+    {
+        $id = Arr::get($params, 'id', 0);
+
+        return DB::select()
+            ->from('pages')
+            ->where('id', '=', $id)
+            ->limit(1)
+            ->execute()
+            ->current()
+        ;
+    }
+
+    /**
+     * @param string $slug
+     * 
+     * @return false|array
+     */
+    public function findPageBySlug($slug = '')
+    {
+        return DB::select()
+            ->from('pages')
+            ->where('slug', '=', $slug)
+            ->limit(1)
+            ->execute()
+            ->current()
+        ;
+    }
 }

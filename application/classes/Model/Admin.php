@@ -296,42 +296,16 @@ class Model_Admin extends Kohana_Model
 		imagedestroy($im);
 	}
 
-	public function getPages()
-	{
-		return DB::query(Database::SELECT, "
-            select `p`.*
-            from `pages` `p`
-            inner join `menu` `m`
-                on `m`.`page_id` = `p`.`id`
-            where `m`.`status_id` = 1
-        ")
-			->execute()
-			->as_array();
-	}
-
-	public function getPage($params = [])
-	{
-		$id = Arr::get($params, 'id', 0);
-		$res = DB::query(Database::SELECT, "
-            select `p`.*
-            from `pages` `p`
-            where `p`.`id` = :id
-        ")
-			->param(':id', $id)
-			->execute()
-			->as_array();
-
-		return !empty($res) ? $res[0] : [];
-	}
-
 	public function setPage($params = [])
 	{
 		$id = Arr::get($params, 'redactpage', 0);
-		DB::query(Database::UPDATE, "update `pages` set `content` = :text where `id` = :id")
-			->param(':id', $id)
-			->param(':title', Arr::get($params, 'title'))
-			->param(':text', Arr::get($params, 'text'))
-			->execute();
+		DB::update('pages')
+			->set([
+				'content' => Arr::get($params, 'text')
+			])
+			->where('id', '=', $id)
+			->execute()
+		;
 	}
 
     public function addMenu($params = [])

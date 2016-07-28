@@ -18,9 +18,7 @@ class Controller_Index extends Controller_Base
 
 	public function action_catalogs()
 	{
-        /**
-         * @var $adminModel Model_Admin
-         */
+        /** @var $adminModel Model_Admin */
         $adminModel = Model::factory('Admin');
 
         View::set_global('title', 'Каталог');
@@ -37,12 +35,20 @@ class Controller_Index extends Controller_Base
 
 	public function action_page()
 	{
-		$template=View::factory("template");
-		$id = $this->request->param('id');
-		$_GET['id'] = $id;
-		$template->content = View::factory("page")
-			->set('pageData', Model::factory('Admin')->getPage($_GET))
-			->set('get', $_GET);
+        /** @var $contentModel Model_Content */
+        $contentModel = Model::factory('Content');
+
+        $slug = $this->request->param('slug');
+        
+        View::set_global('title', 'Главная');
+
+        $template = $contentModel->getBaseTemplate();
+        
+		$template->content = View::factory('page')
+			->set('pageData', $contentModel->findPageBySlug($slug))
+			->set('get', $_GET)
+        ;
+        
 		$this->response->body($template);
 	}
 
