@@ -234,15 +234,44 @@ class Model_Notice extends Kohana_Model {
 	{
 		$data = [];
 
-		$notices = $this->getNotice();
+		$views = DB::select()
+			->from('notice__views')
+			->limit(4)
+			->order_by('id', 'DESC')
+			->group_by('notice_id')
+			->execute()
+			->as_array()
+		;
 
-		array_splice($notices, 4);
-		
-		foreach ($notices as $notice) {
-			$data[] = $notice;
+		foreach ($views as $view) {
+			$noticeData = $this->getNotice(['id' =>$view['notice_id']]);
+			$data[] = Arr::get($noticeData, 0, []);
 		}
 
 		return $data;
+	}
+	
+	public function setNoticeView($id)
+	{
+		$ip = Arr::get($_SERVER, 'REMOTE_ADDR', '');
+
+		$lastView = DB::select()
+			->from('notice__views')
+			->limit(1)
+			->order_by('id', 'DESC')
+			->execute()
+			->current()
+		;
+		
+		$lastViewIp = Arr::get($lastView, 'ip', '');
+		$lastViewNoticeId = Arr::get($lastView, 'notice_id', '');
+
+		if ($lastViewIp !== $ip && (int)$lastViewNoticeId !== (int)$id) {
+			DB::insert('notice__views', ['notice_id', 'ip', 'date'])
+				->values([$id, $ip, DB::expr('NOW()')])
+				->execute()
+			;
+		}
 	}
 }
 ?>

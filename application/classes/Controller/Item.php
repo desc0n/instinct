@@ -11,8 +11,14 @@ class Controller_Item extends Controller_Base
         $noticeModel = Model::factory('Notice');
 
 		$id = $this->request->param('id');
-		$_GET['id'] = $id;
-		$notice = $noticeModel->getNotice($_GET);
+
+		$params = $this->request->query();
+		$params['id'] = $id;
+
+
+		$notice = $noticeModel->getNotice($params);
+		$noticeModel->setNoticeView($id);
+
 		$itemData = (!empty($notice) ? $notice[0] : []);
 
 		View::set_global('title', Arr::get($itemData, 'name'));
