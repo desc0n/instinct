@@ -2,12 +2,12 @@
     <div class="container">
         <div class="menu-row">
             <?foreach ($menu as $menuData) {
-                $slug = $menuData['slug'];
+                $slug = '/page/' . $menuData['slug'];
                 $class = $slug === $rootPage ? 'menu-item-active' : 'menu-item';
 
-                $slug = str_replace('main', '', $slug);
+                $slug = str_replace('/page/main', '', $slug);
                 ?>
-            <a class="<?=$class;?>" href="/page/<?=$slug;?>"><?=$menuData['name'];?></a>
+            <a class="<?=$class;?>" href="<?=$slug;?>"><?=$menuData['name'];?></a>
             <?}?>
         </div>
         <div class="row">
