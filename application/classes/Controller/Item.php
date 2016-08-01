@@ -22,6 +22,7 @@ class Controller_Item extends Controller_Base
 		$itemData = (!empty($notice) ? $notice[0] : []);
 
 		View::set_global('title', Arr::get($itemData, 'name'));
+		View::set_global('rootPage', 'main');
 
 		$template = $contentModel->getBaseTemplate();
 
@@ -32,27 +33,4 @@ class Controller_Item extends Controller_Base
 
 		$this->response->body($template);
 	}
-
-	public function action_sale()
-	{
-		/** @var $contentModel Model_Content */
-		$contentModel = Model::factory('Content');
-		
-		$template=View::factory('emplate');
-		$id = $this->request->param('id');
-		$_GET['id'] = $id;
-		$notice = Model::factory('Notice')->getNoticeSale($_GET);
-		$itemData = (!empty($notice) ? $notice[0] : []);
-		$params['category_id'] = 5;
-		
-		$template->content = View::factory('item_sale')
-			->set('categoryArr', $contentModel->getCategory($params))
-			->set('itemData', $itemData)
-			->set('params', $params)
-			->set('id', $id)
-		;
-		
-		$this->response->body($template);
-	}
-
 }

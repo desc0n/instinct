@@ -25,7 +25,7 @@
 <body>
 <?=View::factory('header')
     ->set('menu', $menu)
-    ->set('rootPage', 'main')
+    ->set('rootPage', $rootPage)
 ;?>
 <div class="container">
     <div class="row">

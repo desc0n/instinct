@@ -8,6 +8,7 @@ class Controller_Index extends Controller_Base
         $contentModel = Model::factory('Content');
 
         View::set_global('title', 'Главная');
+        View::set_global('rootPage', 'main');
 
 		$template = $contentModel->getBaseTemplate();
 
@@ -41,6 +42,7 @@ class Controller_Index extends Controller_Base
         $slug = $this->request->param('slug');
         
         View::set_global('title', 'Главная');
+        View::set_global('rootPage', $slug);
 
         $template = $contentModel->getBaseTemplate();
         
