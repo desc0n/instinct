@@ -88,8 +88,9 @@ class Model_Content extends Kohana_Model
             return DB::select()
                 ->from('category')
                 ->where('id', '=', $id)
+                ->limit(1)
                 ->execute()
-                ->as_array()
+                ->current()
             ;
         } else {
             return DB::select()

@@ -3,7 +3,9 @@
 /**
  * Class Model_Notice
  */
-class Model_Notice extends Kohana_Model {
+class Model_Notice extends Kohana_Model
+{
+	const NOTICES_MARKET_LIMIT = 12;
 
 	public function __construct() {
 	    DB::query(Database::UPDATE,"SET time_zone = '+10:00'")->execute();
@@ -266,7 +268,7 @@ class Model_Notice extends Kohana_Model {
 		$lastViewIp = Arr::get($lastView, 'ip', '');
 		$lastViewNoticeId = Arr::get($lastView, 'notice_id', '');
 
-		if ($lastViewIp !== $ip && (int)$lastViewNoticeId !== (int)$id) {
+		if ($lastViewIp !== $ip || (int)$lastViewNoticeId !== (int)$id) {
 			DB::insert('notice__views', ['notice_id', 'ip', 'date'])
 				->values([$id, $ip, DB::expr('NOW()')])
 				->execute()

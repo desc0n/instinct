@@ -10,39 +10,32 @@ class Controller_Category extends Controller_Base
 
 		/** @var $contentModel Model_Content */
 		$contentModel = Model::factory('Content');
-		
-        $template=View::factory('template');
-		
+
+		$template = $contentModel->getBaseTemplate();
+
+		$categoryId = $this->request->param('id');
+
+		$categoryData = $contentModel->getCategory(null, $categoryId);
+
+		View::set_global('title', sprintf('Категория товара "%s"', Arr::get($categoryData, 'name')));
+		View::set_global('rootPage', 'main');
+
+		$page = Arr::get($_GET, 'page', 1);
+
+		$notices = $noticeModel->getNotice(['category_id' => $categoryId]);
+
+		$market_content = View::factory('market_content')
+			->set('notices', $notices)
+			->set('page', $page)
+		;
+
 		$template->content = View::factory('category')
-            ->set('categoryArr', $contentModel->getCategory(Arr::get($_GET, 'cid'), Arr::get($_GET, 'id')))
-            ->set('subCategoryArr', $contentModel->getCategory(Arr::get($_GET, 'id')))
-			->set('notices', $noticeModel->getNotice(['category_id' => Arr::get($_GET, 'id')]))
-			->set('get', $_GET)
-			->set('post', $_POST)
+			->set('market_content', $market_content)
+			->set('noticesCount', count($notices))
+			->set('categoryId', $categoryId)
+			->set('page', $page)
 		;
 		
 		$this->response->body($template);
 	}
-
-	public function action_sale()
-	{
-		/** @var $contentModel Model_Content */
-		$contentModel = Model::factory('Content');
-		
-		$template=View::factory("template");
-		$_GET['category_id'] = 5;
-		$params = [];
-		$params = array_merge($params, $_GET);
-		$params = array_merge($params, $_POST);
-		
-		$template->content = View::factory('category_sale')
-			->set('categoryArr', $contentModel->getCategory($params))
-			->set('noticeData', Model::factory('Notice')->getNoticeSale($params))
-			->set('get', $_GET)
-			->set('post', $_POST)
-		;
-		
-		$this->response->body($template);
-	}
-
 }

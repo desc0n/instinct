@@ -1,18 +1,15 @@
+<?php
+/** @var $noticeModel Model_Notice */
+$noticeModel = Model::factory('Notice');
+?>
 <div class="market-content">
     <div class="col-lg-12">
-        <?=View::factory('item_thumb')->set('itemData', []);?>
-        <?=View::factory('item_thumb')->set('itemData', []);?>
-        <?=View::factory('item_thumb')->set('itemData', []);?>
-        <?=View::factory('item_thumb')->set('itemData', []);?>
-        <?=View::factory('item_thumb')->set('itemData', []);?>
-        <?=View::factory('item_thumb')->set('itemData', []);?>
-        <?=View::factory('item_thumb')->set('itemData', []);?>
-        <?=View::factory('item_thumb')->set('itemData', []);?>
-        <?=View::factory('item_thumb')->set('itemData', []);?>
+        <?=$market_content;?>
     </div>
 </div>
 <div class="pagination-row">
     Страница
-    <a class="btn btn-default btn-pagination" href="#">1</a>
-    <a class="btn btn-default btn-pagination" href="#">2</a>
+    <?php for ($i = 1; $i <= ceil($noticesCount / $noticeModel::NOTICES_MARKET_LIMIT); $i++) {?>
+    <a class="btn btn-default <?=($i == $page ? 'btn-pagination-active' : 'btn-pagination');?>" href="/?page=<?=$i;?>"><?=$i;?></a>
+    <?}?>
 </div>

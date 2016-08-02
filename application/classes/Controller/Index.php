@@ -7,12 +7,28 @@ class Controller_Index extends Controller_Base
         /** @var $contentModel Model_Content */
         $contentModel = Model::factory('Content');
 
+        /** @var $noticeModel Model_Notice */
+        $noticeModel = Model::factory('Notice');
+
         View::set_global('title', 'Главная');
         View::set_global('rootPage', 'main');
 
 		$template = $contentModel->getBaseTemplate();
+        
+        $page = Arr::get($_GET, 'page', 1);
 
-		$template->content = View::factory('index');
+        $notices = $noticeModel->getNotice();
+        
+        $market_content = View::factory('market_content')
+            ->set('notices', $notices)
+            ->set('page', $page)
+        ;
+
+		$template->content = View::factory('index')
+            ->set('market_content', $market_content)
+            ->set('noticesCount', count($notices))
+            ->set('page', $page)
+        ;
 
 		$this->response->body($template);
 	}

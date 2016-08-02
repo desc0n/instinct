@@ -255,9 +255,16 @@ footer h2 {
 }
 .btn-pagination {
     padding: 4px 10px;
-    background: #2B2A29;
+    background-color: #2B2A29;
     color: #fff;
     border: none;
+    margin: 0 1px;
+}
+.btn-pagination-active {
+    padding: 4px 10px;
+    color: #777;
+    background-color: #e6e6e6;
+    border-color: #adadad;
     margin: 0 1px;
 }
 .footer-warning {

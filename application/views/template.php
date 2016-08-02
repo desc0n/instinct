@@ -33,7 +33,7 @@
             <div class="catalog-list">
                 <h3 class="text-center">Каталог</h3>
                 <?foreach ($categories as $category) {?>
-                <a href="#"><?=$category['name'];?></a>
+                <a href="/category/list/<?=$category['id'];?>"><?=$category['name'];?></a>
                 <?}?>
             </div>
         </div>
