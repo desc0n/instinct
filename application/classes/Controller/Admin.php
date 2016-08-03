@@ -145,7 +145,9 @@ class Controller_Admin extends Controller {
 					HTTP::redirect('/admin/control_panel/redact_notice?id='.$notice_id);
 				}
 
-				if (!empty(Arr::get($_POST, 'removefile'))) {
+				$removeFile = Arr::get($_POST, 'removefile');
+				
+				if (!empty($removeFile)) {
 					$noticeModel->removeNoticeFile($_POST);
 					HTTP::redirect('/admin/control_panel/redact_notice?id='.$notice_id);
 				}
