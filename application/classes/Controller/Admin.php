@@ -127,14 +127,15 @@ class Controller_Admin extends Controller {
 			} else if ($page == 'redact_notice') {
 				$notice_id = Arr::get($_GET, 'id', 0);
 				$removeimg = isset($_POST['removeimg']) ? $_POST['removeimg'] : 0;
-				$filename=Arr::get($_FILES, 'imgname', []);
+				$filename = Arr::get($_FILES, 'imgname', []);
+				$files = Arr::get($_FILES, 'filename', []);
 
 				if ($notice_id != '' && !empty($filename)) {
 					$adminModel->loadNoticeImg($_FILES, $notice_id);
 					HTTP::redirect('/admin/control_panel/redact_notice?id='.$notice_id);
 				}
 
-				if ($notice_id != '' && !empty(Arr::get($_FILES, 'filename', []))) {
+				if ($notice_id != '' && !empty($files)) {
                     $noticeModel->loadNoticeFile($_FILES, $notice_id);
 					HTTP::redirect('/admin/control_panel/redact_notice?id='.$notice_id);
 				}
