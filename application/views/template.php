@@ -11,6 +11,7 @@
     <!-- Bootstrap -->
     <link href="/public/css/bootstrap.css?v=2" rel="stylesheet">
     <link href="/public/css/custom.css?v=3" rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/jquery.rollbar.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -21,6 +22,28 @@
     <![endif]-->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/public/js/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="/public/js/jquery.rollbar.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.page').rollbar({zIndex:80});
+        });
+    </script>
+    <script type="text/javascript">
+        $(function(){
+            var base = 'body';
+            $('a[href^="#"]').each(function(){
+                var name = $(this).attr('href').substr(1);
+                var anchor = document.getElementById(name) || document.getElementsByName(name);
+                if(anchor = (anchor.item)?anchor.item(0):anchor){
+                    var offset = $(base+' > .rollbar-content').height() - $(anchor).offset().top;
+                    $(this).click(function(){
+                        $(base).trigger('rollbar',-offset);
+                    });
+                }
+            });
+        });
+    </script>
 </head>
 <body>
 <?=View::factory('header')
