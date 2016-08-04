@@ -22,6 +22,7 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
 		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
 		{ name: 'styles' },
+		{ name: 'justify' },
 		{ name: 'colors' },
 		{ name: 'about' }
 	];
@@ -36,4 +37,5 @@ CKEDITOR.editorConfig = function( config ) {
 	// Make dialogs simpler.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 	config.filebrowserUploadUrl = '/content/news/upload';
+	config.extraPlugins = 'justify';
 };
