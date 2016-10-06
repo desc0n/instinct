@@ -354,3 +354,81 @@ footer h2 {
     padding: 25px;
     height: 640px;
 }
+
+.market-head-content {
+    background: #898989;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    min-height: 60px;
+}
+
+.offer-phone,
+.offer-phone:focus,
+.offer-phone:visited,
+.offer-phone:hover {
+    background: #E31E24;
+    color: #fff;
+    margin: 15px;
+    border: solid 2px #000;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    width: 180px;
+}
+
+.offer-phone img {
+    width: 40px;
+    display: inline-block;
+    float: left;
+}
+
+.offer-phone-text {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.offer-phone-text p:first-child {
+    font-size: 16px;
+    font-weight: bold;
+}
+.offer-phone-text p {
+    margin: 0;
+}
+
+.cart-display,
+.cart-display:focus,
+.cart-display:visited,
+.cart-display:hover {
+    background: #fff;
+    color: #E31E24;
+    margin: 15px;
+    border: solid 2px #000;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    float: right;
+    width: 180px;
+}
+
+.cart-display img {
+    width: 40px;
+    display: inline-block;
+    float: left;
+}
+
+.cart-display-text {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.cart-display-text p:first-child {
+    font-size: 16px;
+    font-weight: bold;
+}
+.cart-display-text p {
+    margin: 0;
+}

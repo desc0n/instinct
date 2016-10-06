@@ -62,6 +62,22 @@
         </div>
         <div class="col-lg-8">
             <div class="market">
+                <div class="market-head-content">
+                    <button class="btn btn-danger offer-phone">
+                        <img src="/public/i/phone.png">
+                        <div class="offer-phone-text">
+                            <p>2-12-34-56</p>
+                            <p>заказать звонок</p>
+                        </div>
+                    </button>
+                    <button class="btn btn-default cart-display">
+                        <img src="/public/i/red_cart.png">
+                        <div class="cart-display-text">
+                            <p>КОРЗИНА</p>
+                            <p>Товар <span id="cart-num">0</span></p>
+                        </div>
+                    </button>
+                </div>
                 <?=$content;?>
                 <?=View::factory('footer')
                     ->set('lastSeeItems', $lastSeeItems)
