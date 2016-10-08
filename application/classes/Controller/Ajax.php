@@ -4,12 +4,10 @@ class Controller_Ajax extends Controller
 {
 	public function action_add_to_cart()
 	{
-        /**
-         * @var $adminModel Model_Admin
-         */
-        $adminModel = Model::factory('Admin');
+        /** @var $cartModel Model_Cart */
+        $cartModel = Model::factory('Cart');
 
-        $adminModel->addToCart($_POST);
+        $cartModel->addToCart($this->request->post('noticeId'));
 		$this->response->body('ok');
 	}
 
@@ -55,12 +53,10 @@ class Controller_Ajax extends Controller
 
     public function action_get_cart_num()
 	{
-        /**
-         * @var $adminModel Model_Admin
-         */
-        $adminModel = Model::factory('Admin');
+        /** @var $cartModel Model_Cart */
+        $cartModel = Model::factory('Cart');
 
-		$this->response->body($adminModel->getCartNum());
+		$this->response->body($cartModel->getCartNum());
 	}
 
     public function action_add_review()

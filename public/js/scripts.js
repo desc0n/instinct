@@ -1,7 +1,7 @@
 $(document).ready(function() {
-    $('.to-cart').click(function() {
-        var item = $(this).val();
-        $.post("/ajax/add_to_cart", {item: item}, function (data) {
+    $('.btn-sale').click(function() {
+        var noticeId = $(this).val();
+        $.post("/ajax/add_to_cart", {noticeId: noticeId}, function (data) {
             getCartNum();
         });
     });
@@ -111,27 +111,6 @@ function rewriteAllPrice(){
 function getCartNum(){
     $.ajax({type: 'POST', url: '/ajax/get_cart_num', async: true, data:{}})
     .done(function(data){
-        if ($(window).width() <= 375) {
-            var fontSize = '7px';
-            var marginTop = '22px';
-        } else {
-            var fontSize = '18px';
-            var marginTop = '44px';
-        }
-        if (data == 0) {
-            data = 'корзина';
-            if ($(window).width() <= 375) {
-                fontSize = '6px';
-                marginTop = '24px';
-            } else {
-                fontSize = '14px';
-                marginTop = '46px';
-            }
-        }
-
-        $('.cart-num')
-            .css('font-size', fontSize)
-            .css('margin-top', marginTop)
-            .html(data);
+        $('#cart-num').html(data);
     });
 }

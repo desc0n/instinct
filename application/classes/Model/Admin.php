@@ -541,10 +541,23 @@ class Model_Admin extends Kohana_Model
             ->execute();
     }
 
+    public function getGuestId()
+    {
+        $guestId = Cookie::get('guest_id', null);
+
+        if ($guestId === null) {
+            $guestId = $this->setGuestId();
+        }
+
+        return $guestId;
+    }
+
     public function setGuestId()
     {
-        $res = DB::query(Database::INSERT, 'insert into `guests` (`date`) values (now())')
-            ->execute();
+        $res = DB::insert('guests', ['date'])
+            ->values([DB::expr('NOW()')])
+            ->execute()
+        ;
 
         $guestId = Arr::get($res, 0);
 
@@ -553,104 +566,6 @@ class Model_Admin extends Kohana_Model
         return $guestId;
     }
 
-    public function addToCart($params = [])
-    {
-        $params['guest_id'] = Cookie::get('guest_id');
-        $cartData = $this->getCart($params);
-
-        if (empty($cartData)) {
-            DB::query(Database::INSERT, 'insert into `cart` (`guest_id`, `notice_id`, `date`) values (:guest_id, :item, now())')
-                ->param(':guest_id', Arr::get($params, 'guest_id'))
-                ->param(':item', Arr::get($params, 'item'))
-                ->execute();
-        } else {
-            DB::query(Database::UPDATE, 'update `cart` set `num` = (`num` + 1) where `notice_id` = :item and `guest_id` = :guest_id and `show` = 1')
-                ->param(':guest_id', Arr::get($params, 'guest_id'))
-                ->param(':item', Arr::get($params, 'item'))
-                ->execute();
-        }
-    }
-
-    public function plusCartNum($params = [])
-    {
-        DB::query(Database::UPDATE, 'update `cart` set `num` = (`num` + 1) where `id` = :id')
-            ->param(':id', Arr::get($params, 'id'))
-            ->execute();
-
-        return Arr::get(Arr::get($this->getCart($params), 0, []), 'num', 0);
-    }
-
-    public function minusCartNum($params = [])
-    {
-        DB::query(Database::UPDATE, 'update `cart` set `num` = if(`num` > 1, (`num` - 1), 1) where `id` = :id')
-            ->param(':id', Arr::get($params, 'id'))
-            ->execute();
-
-        return Arr::get(Arr::get($this->getCart($params), 0, []), 'num', 0);
-    }
-
-    public function removeFromCart($params = [])
-    {
-        DB::query(Database::UPDATE, 'update `cart` set `show` = 0 where `id` = :id')
-            ->param(':id', Arr::get($params, 'id'))
-            ->execute();
-
-        return 'ok';
-    }
-
-    public function removeAllCart()
-    {
-        DB::query(Database::UPDATE, 'update `cart` set `show` = 0 where `guest_id` = :guest_id')
-            ->param(':guest_id', Cookie::get('guest_id'))
-            ->execute();
-
-        return 'ok';
-    }
-
-    public function getCart($params = [])
-    {
-		$guestId = Arr::get($params, 'guest_id');
-		$item = Arr::get($params, 'item');
-		$id = Arr::get($params, 'id');
-		
-        $guestSql = !empty($guestId) ? ' and `c`.`guest_id` = :guest_id' : '';
-        $noticeSql = !empty($item) ? ' and `c`.`notice_id` = :item' : '';
-        $idSql = !empty($id) ? ' and `c`.`id` = :id' : '';
-
-        return DB::query(Database::SELECT, "
-            select `c`.*, `n`.*, `c`.`id`, `n`.`id` as `notice_id`
-            from `cart` `c`
-            inner join `notice` `n`
-                on `n`.`id` = `c`.`notice_id`
-            where `c`.`show` = :show
-            $guestSql
-            $noticeSql
-            $idSql
-        ")
-            ->param(':guest_id', $guestId)
-            ->param(':item', $item)
-            ->param(':show', Arr::get($params, 'show', 1))
-            ->param(':id', $id)
-            ->execute()
-            ->as_array();
-    }
-
-    public function getCartNum()
-    {
-        $res = DB::query(Database::SELECT, "
-            select sum(`c`.`num`) as `num`
-            from `cart` `c`
-            inner join `notice` `n`
-                on `n`.`id` = `c`.`notice_id`
-            where `c`.`show` = 1
-            and `c`.`guest_id` = :guest_id
-        ")
-            ->param(':guest_id', Cookie::get('guest_id'))
-            ->execute()
-            ->as_array();
-
-        return Arr::get(Arr::get($res, 0, []), 'num', 0);
-    }
 
     public function addOrder($params = [])
     {
