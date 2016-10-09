@@ -57,10 +57,10 @@ class Controller_Ajax extends Controller
         /** @var $cartModel Model_Cart */
         $cartModel = Model::factory('Cart');
 
-        $name = (string)$this->request->post('cartId');
-        $phone = (string)$this->request->post('value');
-        $address = (string)$this->request->post('value');
-        $email = (string)$this->request->post('value');
+        $name = (string)$this->request->post('name');
+        $phone = (string)$this->request->post('phone');
+        $address = (string)$this->request->post('address');
+        $email = (string)$this->request->post('email');
 
         $this->response->body($cartModel->sendOrder($name, $phone, $address, $email));
     }
