@@ -432,3 +432,124 @@ footer h2 {
 .cart-display-text p {
     margin: 0;
 }
+
+.cart-content {
+background: #EBECEC;
+}
+
+.cart-title {
+    width: 100%;
+    color: #E31E24;
+    font-size: 24px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.cart-table {
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.cart-table tbody tr td {
+    background: #fff;
+    vertical-align: middle;
+}
+
+.cart-table thead tr td {
+    font-weight: bold;
+    text-align: center;
+}
+
+.cart-table thead tr td,
+.cart-table tfoot tr td {
+    background: #F5F5F6;
+    vertical-align: middle;
+}
+
+.cart-order {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.cart-order-title {
+    width: 60%;
+    font-size: 10px;
+    text-align: center;
+    margin: auto;
+    padding: 10px 0;
+}
+
+#order-form {
+    background: #D9DADA;
+    padding: 20px;
+}
+
+.delivery-type-form {
+    width: 80%;
+    margin: auto;
+}
+
+.quest-client-order-form {
+    margin: 5px 0;
+}
+
+.quest-client-order-form label,
+.quest-client-order-form .form-control {
+    display: inline-block;
+}
+
+.quest-client-order-form label {
+    width: 30%;
+}
+.quest-client-order-form .form-control {
+    width: 70%;
+}
+
+.submit-order-btn-field {
+    width: 100%;
+    text-align: center;
+}
+
+.submit-order-btn {
+    margin: auto;
+    font-size: 24px;
+    background: #E31E24;
+    color: #fff;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.agreement {
+    width: 100%;
+    background: #898989;
+}
+
+.agreement-title {
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+    padding: 10px 0;
+}
+
+.agreement-content {
+    color: #B2B3B3;
+    padding: 5px;
+}
+
+.agreement-checkout {
+    text-align: center;
+    color: #fff;
+    padding: 10px 0;
+    font-size: 17px;
+}
+
+#modalAlert {
+    margin: auto;
+    margin-top: 200px;
+}
+
+#modalAlert .alert.alert-success {
+    margin-bottom: 0;
+}

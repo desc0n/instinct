@@ -50,10 +50,16 @@ class Model_Cart extends Kohana_Model
         return $this->addToGuestCart($noticeId);
     }
 
-    public function plusCartNum($id)
+    /**
+     * @param int $id
+     * @param int $value
+     *
+     * @return int
+     */
+    public function setCartNum($id, $value)
     {
         DB::update('cart')
-            ->set(['num' => DB::expr('(num + 1)')])
+            ->set(['num' => $value])
             ->where('id', '=', $id)
             ->execute()
         ;
@@ -61,17 +67,10 @@ class Model_Cart extends Kohana_Model
         return $this->getGuestCartNum();
     }
 
-    public function minusCartNum($id)
-    {
-        DB::update('cart')
-            ->set(['num' => DB::expr('if(`num` > 1, (`num` - 1), 1)')])
-            ->where('id', '=', $id)
-            ->execute()
-        ;
-
-        return $this->getGuestCartNum();
-    }
-
+    /**
+     * @param $positionId
+     * @return bool
+     */
     public function removeCartPosition($positionId)
     {
         DB::update('cart')
@@ -94,6 +93,22 @@ class Model_Cart extends Kohana_Model
         return true;
     }
 
+    public function removeAllCartPositions()
+    {
+        return $this->removeAllGuestCartPositions();
+    }
+
+    /**
+     * @return array
+     */
+    public function getCart()
+    {
+        return $this->getGuestCart();
+    }
+
+    /**
+     * @return array
+     */
     public function getGuestCart()
     {
         return DB::select('c.*', 'n.*', 'c.id', ['n.id', 'notice_id'])
@@ -126,6 +141,9 @@ class Model_Cart extends Kohana_Model
         ;
     }
 
+    /**
+     * @return int
+     */
     public function getGuestCartNum()
     {
         $res = DB::select([DB::expr('SUM(c.num)'), 'num'])
@@ -139,8 +157,21 @@ class Model_Cart extends Kohana_Model
         return Arr::get($res, 'num', 0);
     }
 
+    /**
+     * @return int
+     */
     public function getCartNum()
     {
-        return $this->getGuestCartNum();
+        return (int)$this->getGuestCartNum();
+    }
+
+    public function sendOrder($name, $phone, $address, $email)
+    {
+        /** @var $adminModel Model_Admin */
+        $adminModel = Model::factory('Admin');
+
+        $adminModel->addOrder($name, $phone, $address, $email);
+
+        return $this->removeAllCartPositions();
     }
 }

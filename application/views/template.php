@@ -70,13 +70,13 @@
                             <p>заказать звонок</p>
                         </div>
                     </button>
-                    <button class="btn btn-default cart-display">
+                    <a class="btn btn-default cart-display" href="/cart">
                         <img src="/public/i/red_cart.png">
                         <div class="cart-display-text">
                             <p>КОРЗИНА</p>
                             <p>Товар <span id="cart-num">0</span></p>
                         </div>
-                    </button>
+                    </a>
                 </div>
                 <?=$content;?>
                 <?=View::factory('footer')

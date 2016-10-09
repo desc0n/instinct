@@ -3,33 +3,32 @@ $(document).ready(function() {
         var noticeId = $(this).val();
         $.post("/ajax/add_to_cart", {noticeId: noticeId}, function (data) {
             getCartNum();
+
+            if ($('#order-form').length) {
+                location.reload();
+            }
         });
     });
 
-    $('.position-num-plus').click(function() {
-        var cartId = $(this).val();
-        $.post("/ajax/plus_cart_num", {id: cartId}, function (data) {console.log(data);
-            $('#positionNum_' + cartId).val(data);
-            $('#positionSum_' + cartId).html(data * $('#positionPrice_' + cartId).val());
-            rewriteAllPrice();
-            getCartNum();
-        });
-    });
+    $('.position-num').on('input', function() {
+        var cartId = $(this).parent().parent().data('cart-id');
+        var value = $(this).val();
 
-    $('.position-num-minus').click(function() {
-        var cartId = $(this).val();
-        $.post("/ajax/minus_cart_num", {id: cartId}, function (data) {
+        $.post("/ajax/set_cart_num", {cartId: cartId, value: value}, function (data) {
             $('#positionNum_' + cartId).val(data);
             $('#positionSum_' + cartId).html(data * $('#positionPrice_' + cartId).val());
+
             rewriteAllPrice();
             getCartNum();
         });
     });
 
     $('.remove-position').click(function() {
-        var cartId = $(this).val();
-        $.post("/ajax/remove_from_cart", {id: cartId}, function (data) {
+        var cartId = $(this).parent().parent().data('cart-id');
+
+        $.post("/ajax/remove_from_cart", {cartId: cartId}, function (data) {
             $('#tableRow_' + cartId).remove();
+
             rewriteAllPrice();
             getCartNum();
         });
@@ -54,13 +53,8 @@ $(document).ready(function() {
 
             return false;
         }
-        if ($('#address').val() == '') {
-            alert('Укажите свой адрес!');
 
-            return false;
-        }
-
-        $('#order-form').submit();
+        sendOrder();
     });
 
     $('#sendReview').click(function(){
@@ -91,6 +85,14 @@ $(document).ready(function() {
 
     });
 
+    $('.agreement-checkout input[type=checkbox]').on('click', function () {
+        if ($(this).prop('checked')) {
+            $('.submit-order-btn').removeAttr('disabled');
+        } else {
+            $('.submit-order-btn').attr('disabled', 'disbled');
+        }
+    });
+
     getCartNum();
 });
 
@@ -112,5 +114,22 @@ function getCartNum(){
     $.ajax({type: 'POST', url: '/ajax/get_cart_num', async: true, data:{}})
     .done(function(data){
         $('#cart-num').html(data);
+    });
+}
+
+function sendOrder() {
+    var name = $('#name').val();
+    var phone = $('#phone').val();
+    var address = $('#address').val();
+    var email = $('#email').val();
+
+    $.ajax({type: 'POST', url: '/ajax/send_order', async: true, data:{name: name, phone: phone, address: address, email: email}})
+    .done(function(){
+        $('.cart-table tbody tr').remove();
+
+        rewriteAllPrice();
+        getCartNum();
+
+        $('#modalAlert').modal('toggle');
     });
 }

@@ -567,70 +567,75 @@ class Model_Admin extends Kohana_Model
     }
 
 
-    public function addOrder($params = [])
+    public function addOrder($name, $phone, $address, $email)
     {
-        $params['order_id'] = $this->setOrder();
-        $params['guest_id'] = Cookie::get('guest_id');
-        $params['cart_data'] = $this->getCart($params);
+        /** @var $cartModel Model_Cart */
+        $cartModel = Model::factory('Cart');
 
-        $this->setOrderClient($params);
-        $this->setOrderPart($params);
-        $this->setOrderStatus($params);
+        $orderId = $this->setOrder();
+        $cartData = $cartModel->getCart();
+
+        $this->setOrderClient($orderId, $name, $phone, $address, $email);
+        $this->setOrderPart($orderId, $cartData);
+        $this->setOrderStatus($orderId, 1);
 
         $view = View::factory('add_order_mail')
-            ->set('cartData', $params['cart_data'])
-            ->set('params', $params);
+            ->set('cartData', $cartData)
+            ->set('orderId', $orderId)
+            ->set('name', $name)
+            ->set('phone', $phone)
+            ->set('address', $address)
+            ->set('email', $email)
+        ;
 
-        $this->sendMail('walletvl@yandex.ru', 'Заказ с сайта', $view, true);
+        $this->sendMail('osnovnoinstinct@gmail.com', 'Заказ с сайта', $view, true);
 
-        return $params['order_id'];
+        return $orderId;
     }
 
     public function setOrder()
     {
-        $res = DB::query(Database::INSERT, 'INSERT INTO `orders__orders` (`date`) VALUES (now())')
-            ->execute();
+        $res = DB::insert('orders__orders', ['date'])
+            ->values([DB::expr('NOW()')])
+            ->execute()
+        ;
 
         return Arr::get($res, 0);
     }
 
-    public function setOrderClient($params = [])
+    public function setOrderClient($orderId, $name, $phone, $address, $email)
     {
-        $phone = Arr::get($params, 'phone');
         $phone = str_replace('+7', '', $phone);
         $phone = substr($phone, 0, 1) == 8 ? substr($phone, 1) : $phone;
 
         DB::query(Database::INSERT, '
             INSERT INTO `orders__clients`
-            (`order_id`, `name`, `address`, `email`, `phone`, `comments`)
-            VALUES (:order_id, :name, :address, :email, :phone, :comments)
+            (`order_id`, `name`, `address`, `email`, `phone`)
+            VALUES (:order_id, :name, :address, :email, :phone)
             ON DUPLICATE KEY UPDATE `name` = :name,
             `address` = :address,
             `email` = :email,
-            `phone` = :phone,
-            `comments` = :comments
+            `phone` = :phone
         ')
-            ->param(':order_id', Arr::get($params, 'order_id'))
-            ->param(':name', Arr::get($params, 'name'))
-            ->param(':address', Arr::get($params, 'address'))
-            ->param(':email', Arr::get($params, 'email'))
-            ->param(':comments', Arr::get($params, 'comments'))
+            ->param(':order_id', $orderId)
+            ->param(':name', $name)
+            ->param(':address', $address)
+            ->param(':email', $email)
             ->param(':phone', $phone)
             ->execute();
     }
 
-    public function setOrderPart($params = [])
+    public function setOrderPart($orderId, $cartData)
     {
-        foreach (Arr::get($params, 'cart_data', []) as $data) {
-            DB::query(Database::INSERT, 'INSERT INTO `orders__parts` (`order_id`, `part`, `num`) VALUES (:order_id, :part, :num)')
-                ->param(':order_id', Arr::get($params, 'order_id'))
-                ->param(':part', $data['name'])
-                ->param(':num', $data['num'])
-                ->execute();
+        foreach ($cartData as $data) {
+            DB::insert('orders__parts', ['order_id', 'part', 'num'])
+                ->values([$orderId, $data['name'], $data['num']])
+                ->execute()
+            ;
         }
     }
 
-    public function setOrderStatus($params = [])
+    public function setOrderStatus($orderId, $statusId)
     {
         DB::query(Database::INSERT, '
             INSERT INTO `orders__statuses`
@@ -638,9 +643,10 @@ class Model_Admin extends Kohana_Model
             VALUES (:order_id, :status)
             ON DUPLICATE KEY UPDATE `status` = :status
         ')
-            ->param(':order_id', Arr::get($params, 'order_id'))
-            ->param(':status', Arr::get($params, 'status', 1))
-            ->execute();
+            ->param(':order_id', $orderId)
+            ->param(':status', $statusId)
+            ->execute()
+        ;
     }
 
     public function findOrderStatus($params = [])
@@ -668,9 +674,6 @@ class Model_Admin extends Kohana_Model
         $body .= "$message";
 
         if (mail($to, $subject, $body, $header)) {
-            if ($order) {
-                $this->removeAllCart();
-            }
         }
     }
 

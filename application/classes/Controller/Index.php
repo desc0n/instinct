@@ -72,38 +72,23 @@ class Controller_Index extends Controller_Base
 
 	public function action_cart()
 	{
-        /**
-         * @var $adminModel Model_Admin
-         */
-        $adminModel = Model::factory('Admin');
+        /** @var $contentModel Model_Content */
+        $contentModel = Model::factory('Content');
+
+        /** @var $cartModel Model_Cart */
+        $cartModel = Model::factory('Cart');
 
         View::set_global('title', 'Корзина');
+        View::set_global('rootPage', 'cart');
 
-        $viewSuccess = false;
+        $template = $contentModel->getBaseTemplate();
 
-        $orderStatus = $adminModel->findOrderStatus([
-            'order_id' => Arr::get($_GET, 'id'),
-        ]);
+		$template->content = View::factory('cart')
+			->set('get', $_GET)
+			->set('cart', $cartModel->getCart())
+        ;
 
-        if (Arr::get($orderStatus, 'status') == 1) {
-            $viewSuccess = true;
-            $adminModel->setOrderStatus([
-                'order_id' => Arr::get($_GET, 'id'),
-                'status' => 2
-            ]);
-        }
-
-        if (isset($_POST['neworder'])) {
-            $order_id = $adminModel->addOrder($_POST);
-            HTTP::redirect(sprintf('/cart?result=success&id=%d', $order_id));
-        }
-
-        $template = View::factory("template")
-            ->set('viewSuccess', $viewSuccess);
-
-		$template->content = View::factory("cart")
-			->set('get', $_GET);
-		$this->response->body($template);
+        $this->response->body($template);
 	}
 
     public function action_reviews()
