@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="col-lg-6 text-center">
-                <img class="header-img" src="/public/i/header_img.png">
+                <a href="/"><img class="header-img" src="/public/i/header_img.png"></a>
                 <h1 class="header-phone">Тел. 0-00-00-00</h1>
                 <div class="header-search">
                     <div class="input-group">
