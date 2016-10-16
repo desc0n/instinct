@@ -9,6 +9,10 @@
                     <td><input type="text" name="sort" class="order-select form-control" value="<?=Arr::get($notice_info,'sort');?>"></td>
                 </tr>
                 <tr>
+                    <th class="text-left">Артикул</th>
+                    <td><input type="text" name="article" class="order-select form-control" value="<?=Arr::get($notice_info,'article');?>"></td>
+                </tr>
+                <tr>
                     <th class="text-left">Наименование</th>
                     <td><textarea name="name" class="form-control"><?=Arr::get($notice_info,'name','');?></textarea></td>
                 </tr>

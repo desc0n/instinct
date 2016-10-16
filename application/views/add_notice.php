@@ -1,6 +1,9 @@
 <?
 /** @var $contentModel Model_Content */
 $contentModel = Model::factory('Content');
+
+/** @var Model_Notice $noticeModel */
+$noticeModel = Model::factory('Notice');
 ?>
 <div class="row">
     <h2 class="sub-header col-sm-12">Список товаров по группам:</h2>
@@ -42,10 +45,10 @@ $contentModel = Model::factory('Content');
                                                                 </div>
                                                                 <div id="collapse2<?=$group_2_data['id'];?>" class="panel-collapse collapse <?=(Arr::get($get,'group_2','') == $group_2_data['id'] ? 'in' : '');?>">
                                                                     <div class="panel-body product-group-panel-body">
-                                                                        <?foreach(Model::factory('Notice')->getNotice(['category_id' => $group_2_data['id']]) as $product_2_data){?>
+                                                                        <?foreach($noticeModel->getNotice(['category_id' => $group_2_data['id']]) as $product_2_data){?>
                                                                             <div class="alert alert-info">
-                                                                                <strong><?=$product_2_data['id'];?></strong>  <a href="/admin/control_panel/redact_notice?id=<?=$product_2_data['id'];?>"><?=(empty($product_2_data['name']) ? '...' : $product_2_data['name']);?></a>
-                                                                                <span class="pull-right glyphicon glyphicon-remove" title="удалить" onclick="javascript: $('#removeproduct').val(<?=$product_2_data['id'];?>);$('#remove_product').submit();"></span>
+                                                                                <a href="/admin/control_panel/redact_notice?id=<?=$product_2_data['id'];?>"><?=(empty($product_2_data['name']) ? '...' : $product_2_data['article'] . ' ' . $product_2_data['name']);?></a>
+                                                                                <span class="pull-right glyphicon glyphicon-remove" title="удалить" onclick="$('#removeproduct').val(<?=$product_2_data['id'];?>);$('#remove_product').submit();"></span>
                                                                             </div>
                                                                         <?}?>
                                                                         <form method="post">
@@ -63,10 +66,10 @@ $contentModel = Model::factory('Content');
                                                         </div>
                                                     </div>
                                                 <?}
-                                                foreach(Model::factory('Notice')->getNotice(['category_id' => $group_1_data['id']]) as $product_1_data){?>
+                                                foreach($noticeModel->getNotice(['category_id' => $group_1_data['id']]) as $product_1_data){?>
                                                     <div class="alert alert-info">
-                                                        <strong><?=$product_1_data['id'];?></strong> <a href="/admin/control_panel/redact_notice?id=<?=$product_1_data['id'];?>"><?=$product_1_data['name'];?></a>
-                                                        <span class="pull-right glyphicon glyphicon-remove" title="удалить" onclick="javascript: $('#removeproduct').val(<?=$product_1_data['id'];?>);$('#remove_product').submit();"></span>
+                                                        <a href="/admin/control_panel/redact_notice?id=<?=$product_1_data['id'];?>"><?=$product_1_data['article'];?> <?=$product_1_data['name'];?></a>
+                                                        <span class="pull-right glyphicon glyphicon-remove" title="удалить" onclick="$('#removeproduct').val(<?=$product_1_data['id'];?>);$('#remove_product').submit();"></span>
                                                     </div>
                                                 <?}?>
                                                 <form method="post">
