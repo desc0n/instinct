@@ -66,7 +66,7 @@
                     <button class="btn btn-danger offer-phone">
                         <img src="/public/i/phone.png">
                         <div class="offer-phone-text">
-                            <p>2-12-34-56</p>
+                            <p>2-91-77-15</p>
                             <p>заказать звонок</p>
                         </div>
                     </button>
