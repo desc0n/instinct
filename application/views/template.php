@@ -50,13 +50,30 @@
     ->set('menu', $menu)
     ->set('rootPage', $rootPage)
 ;?>
+<?
+/** @var $contentModel Model_Content */
+$contentModel = Model::factory('Content');
+?>
 <div class="container">
     <div class="row">
         <div class="col-lg-3">
-            <div class="catalog-list">
+            <div class="catalog-list" id="accordion">
                 <h3 class="text-center">Каталог</h3>
                 <?foreach ($categories as $category) {?>
-                <a href="/category/list/<?=$category['id'];?>"><?=$category['name'];?></a>
+                <div>
+                    <div>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?=$category['id'];?>"><?=$category['name'];?></a>
+                    </div>
+                    <div id="collapse<?=$category['id'];?>" class="panel-collapse collapse">
+                        <div>
+                            <?foreach ($contentModel->getCategory($category['id']) as $categoryChild){?>
+                                <div class="category-child">
+                                    <a href="/category/list/<?=$categoryChild['id'];?>"><?=$categoryChild['name'];?></a>
+                                </div>
+                            <?}?>
+                        </div>
+                    </div>
+                </div>
                 <?}?>
             </div>
         </div>
