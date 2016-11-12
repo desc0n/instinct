@@ -64,7 +64,7 @@ $contentModel = Model::factory('Content');
                     <div>
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?=$category['id'];?>"><?=$category['name'];?></a>
                     </div>
-                    <div id="collapse<?=$category['id'];?>" class="panel-collapse collapse">
+                    <div id="collapse<?=$category['id'];?>" class="panel-collapse collapse in">
                         <div>
                             <?foreach ($contentModel->getCategory($category['id']) as $categoryChild){?>
                                 <div class="category-child">
