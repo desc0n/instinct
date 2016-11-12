@@ -176,6 +176,11 @@ header {
     margin: 1px 0;
     font-size: 16px;
 }
+.catalog-list .category-child a,
+.catalog-list .category-child a:hover,
+.catalog-list .category-child a:visited {
+    background: #727271;
+}
 .category-btns {
     margin-left: -5px;
 }
