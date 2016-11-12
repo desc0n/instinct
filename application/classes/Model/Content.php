@@ -81,6 +81,7 @@ class Model_Content extends Kohana_Model
             return DB::select()
                 ->from('category')
                 ->where('parent_id', '=', $cid)
+                ->order_by('sort', 'ASC')
                 ->execute()
                 ->as_array()
             ;
@@ -96,6 +97,7 @@ class Model_Content extends Kohana_Model
             return DB::select()
                 ->from('category')
                 ->where('parent_id', 'IS', NULL)
+                ->order_by('sort', 'ASC')
                 ->execute()
                 ->as_array()
             ;
