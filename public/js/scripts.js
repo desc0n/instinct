@@ -93,6 +93,7 @@ $(document).ready(function() {
         }
     });
 
+    checkItemHeight();
     getCartNum();
 });
 
@@ -132,4 +133,15 @@ function sendOrder() {
 
         $('#modalAlert').modal('toggle');
     });
+}
+
+function checkItemHeight()
+{
+    var imgs = $('.item-thumb-img img');
+
+    for (i = 0; i < imgs.length; i++) {
+        if(imgs[i].height > 105) {
+            imgs[i].style.height = '105px';
+        }
+    }
 }
