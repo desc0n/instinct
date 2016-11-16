@@ -128,5 +128,5 @@ $contentModel = Model::factory('Content');
 </body>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="/public/js/bootstrap.js"></script>
-<script src="/public/js/scripts.js?v=2"></script>
+<script src="/public/js/scripts.js?v=3"></script>
 </html>
