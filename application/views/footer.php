@@ -26,3 +26,8 @@
         </p>
     </div>
 </footer>
+<script>
+    $(document).ready(function () {
+        checkItemHeight();
+    });
+</script>

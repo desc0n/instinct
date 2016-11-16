@@ -13,4 +13,8 @@ foreach ($notices as $notice) {
     $i++;
 }
 ?>
-
+<script>
+    $(document).ready(function () {
+        checkItemHeight();
+    });
+</script>
