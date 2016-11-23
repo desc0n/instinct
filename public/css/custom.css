@@ -257,6 +257,7 @@ footer h2 {
 }
 .item-thumb-img img {
     width: 100%;
+    max-height: 150px;
 }
 .like {
     color: #E31E24;
