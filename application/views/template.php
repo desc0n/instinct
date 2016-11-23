@@ -24,6 +24,9 @@
     <script src="/public/js/jquery.min.js"></script>
     <script type="text/javascript" src="/public/js/jquery.mousewheel.js"></script>
     <script type="text/javascript" src="/public/js/jquery.rollbar.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/public/js/bootstrap.js"></script>
+    <script src="/public/js/scripts.js?v=3"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             $('.page').rollbar({zIndex:80});
@@ -126,7 +129,4 @@ $contentModel = Model::factory('Content');
     </div>
 </div>
 </body>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="/public/js/bootstrap.js"></script>
-<script src="/public/js/scripts.js?v=3"></script>
 </html>
