@@ -26,15 +26,15 @@
 	<div class="container">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="sr-only">Toggle navigation</span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
 			</div>
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav navbar-right hidden-xs">
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav navbar-right hidden-sm hidden-xs">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?=(Auth::instance()->logged_in() ? Auth::instance()->get_user()->username : 'Вход');?> <span class="glyphicon glyphicon-chevron-down"></span></a>
 						<ul class="dropdown-menu" role="menu">
@@ -49,59 +49,45 @@
 									<button type="submit" class="btn btn-default" name="login">Войти</button>
 								</form>
 							<?} else{?>
-								<li role="presentation" class="divider"></li>
 								<?if(Auth::instance()->logged_in('admin')){?>
-									<li role="presentation" class="divider"></li>
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="/admin/control_panel"><span class="glyphicon glyphicon-folder-open"></span> Админка</a></li>
-								<?}?>
 								<li role="presentation" class="divider"></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="/admin/control_panel"><span class="glyphicon glyphicon-folder-open"></span> Админка</a></li>
+								<li role="presentation" class="divider"></li>
+								<?}?>
 								<form class="form-inline form-login" role="form" method="post">
 									<button type="submit" class="btn btn-default" name="logout"><span class="glyphicon glyphicon-log-out"></span> Выход</button>
 								</form>
 							<?}?>
 						</ul>
 					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right hidden-lg hidden-md">
+					<li role="presentation" class="divider"></li>
+					<li role="presentation">
+						<?if(!Auth::instance()->logged_in()){?>
+							<form class="form-inline form-login" role="form" method="post">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Логин" name="username">
+								</div>
+								<div class="form-group">
+									<input type="password" class="form-control" placeholder="Пароль" name="password">
+								</div>
+								<button type="submit" class="btn btn-default" name="login">Войти</button>
+							</form>
+						<?} else{?>
+							<?if(Auth::instance()->logged_in('admin')){?>
+							<a role="menuitem" tabindex="-1" href="/admin/control_panel"><span class="glyphicon glyphicon-folder-open"></span> Админка</a></li>
+							<?}?>
+							<form class="form-inline form-login" role="form" method="post">
+								<button type="submit" class="btn btn-default" name="logout"><span class="glyphicon glyphicon-log-out"></span> Выход</button>
+							</form>
+						<?}?>
+					<li role="presentation" class="divider"></li>
 				</ul>
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
 	</div>
 </nav>
-<div class="post-nav visible-xs">
-	<div class="container">
-		<div class="col-sm-3 b-name">
-			<span class="hidden-xs">Контрольная панель</span>
-			<div class="m-cart">
-				<ul class="nav pull-left"></ul>
-				<ul class="nav pull-right">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle mobile-login" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?=(Auth::instance()->logged_in() ? Auth::instance()->get_user()->username : 'Вход');?><span class="glyphicon glyphicon-chevron-down"></span></a>
-						<ul class="dropdown-menu login-xs" role="menu">
-							<?if(!Auth::instance()->logged_in()){?>
-								<form class="form-inline form-login" role="form" method="post">
-									<div class="input-group">
-										<input type="text" class="form-control" placeholder="Логин" name="username">
-									</div>
-									<div class="input-group">
-										<input type="password" class="form-control" placeholder="Пароль" name="password">
-									</div>
-									<button type="submit" class="btn btn-default" name="login">Войти</button>
-								</form>
-							<?} else{?>
-								<?if(Auth::instance()->logged_in('admin')){?>
-									<li role="presentation" class="divider"></li>
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="/admin"><span class="glyphicon glyphicon-folder-open"></span> Админка</a></li>
-								<?}?>
-								<form class="form-inline form-login" role="form" method="post">
-									<button type="submit" class="btn btn-default" name="logout"><span class="glyphicon glyphicon-log-out"></span> Выход</button>
-								</form>
-							<?}?>
-						</ul>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
 <div class="header-container">
 	<div class="container">
 		<div class="row">
@@ -114,7 +100,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<?if(Auth::instance()->logged_in('admin')){?>
-				<div class="col-xs-4 col-sm-4 col-md-3 sidebar admin-menu">
+				<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 sidebar admin-menu">
 <!--					<div class="row">-->
 <!--						<a class="btn btn-default admin-main-page-link" href="/admin/control_panel/add_category">-->
 <!--							Редактировать категории-->
@@ -142,7 +128,7 @@
 <!--					</div>-->
 				</div>
 			<?}?>
-			<div class="col-xs-8 col-sm-8 col-md-9 main">
+			<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 main">
 				<?=$admin_content;?>
 			</div>
 		</div>
