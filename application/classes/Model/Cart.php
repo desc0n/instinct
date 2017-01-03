@@ -23,12 +23,15 @@ class Model_Cart extends Kohana_Model
     public function addToGuestCart($noticeId)
     {
         $cartData = $this->getGuestCartByNotice($noticeId);
+        $cartId = Arr::get($cartData, 'id');
 
-        if (empty($cartData)) {
-            DB::insert('cart', ['guest_id', 'notice_id', 'date'])
+        if (empty($cartId)) {
+            $res = DB::insert('cart', ['guest_id', 'notice_id', 'date'])
                 ->values([$this->guestId, $noticeId, DB::expr('NOW()')])
                 ->execute()
             ;
+
+            $cartId = $res[0];
         } else {
             DB::update('cart')
                 ->set(['num' => DB::expr('(num + 1)')])
@@ -37,7 +40,7 @@ class Model_Cart extends Kohana_Model
             ;
         }
 
-        return true;
+        return $cartId;
     }
 
     /**

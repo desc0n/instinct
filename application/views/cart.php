@@ -23,7 +23,7 @@
                     <button class="btn btn-danger btn-xs remove-position">x</button>
                 </td>
                 <td class="text-left item-name">
-                    <a href="/item/<?=$cartData['notice_id'];?>"><?=$cartData['name'];?></a>
+                    <a href="/item/show/<?=$cartData['notice_id'];?>"><?=$cartData['name'];?></a>
                 </td>
                 <td class="item-price">
                     <span><?=$cartData['price'];?></span>
@@ -78,13 +78,13 @@
         <div class="agreement">
             <div class="agreement-title">Соглашение</div>
             <div class="agreement-content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                velit esse cillum dolore eu fugiat nulla pariatur.
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum.
+<!--                Lorem ipsum dolor sit amet, consectetur adipiscing elit,-->
+<!--                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.-->
+<!--                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip-->
+<!--                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate-->
+<!--                velit esse cillum dolore eu fugiat nulla pariatur.-->
+<!--                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt-->
+<!--                mollit anim id est laborum.-->
             </div>
             <div class="agreement-checkout">
                 <input type="checkbox"> Согласен

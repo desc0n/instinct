@@ -1,14 +1,5 @@
 $(document).ready(function() {
-    $('.btn-sale').click(function() {
-        var noticeId = $(this).val();
-        $.post("/ajax/add_to_cart", {noticeId: noticeId}, function (data) {
-            getCartNum();
-
-            if ($('#order-form').length) {
-                location.reload();
-            }
-        });
-    });
+    $('.btn-sale').click(function() {$.post("/ajax/add_to_cart", {noticeId: getNoticeId(), quantity: getCartQuantity()}, function () {getCartNum();if ($('#order-form').length) {location.reload();}});});
 
     $('.position-num').on('input', function() {
         var cartId = $(this).parent().parent().data('cart-id');
@@ -93,6 +84,9 @@ $(document).ready(function() {
         }
     });
 
+    $('.add-cart-btn-minus').on('click', function () {minusCartQuantity();});
+    $('.add-cart-btn-plus').on('click', function () {plusCartQuantity();});
+
     getCartNum();
 });
 
@@ -143,4 +137,40 @@ function checkItemHeight()
             imgs[i].style.height = '105px';
         }
     }
+}
+function getNoticeId() {return $('#noticeId').length ? $('#noticeId').val() : null;}
+function getCartQuantity() {return $('#cartQuantity').val() * 1;}
+function getRootItemQuantity() {return $('#rootItemQuantity').val() * 1;}
+function minusCartQuantity() {setCartQuantity(getCartQuantity() - 1);}
+function plusCartQuantity() {setCartQuantity(getCartQuantity() + 1);}
+function setCartQuantity(quantity) {
+    if (changeBtnMinusQuantityDisabledAttribute(quantity) && changeBtnPlusQuantityDisabledAttribute(quantity)) {
+        $('#cartQuantity').val(quantity);
+    }
+}
+function changeBtnMinusQuantityDisabledAttribute(quantity) {
+    var $btn = $('.add-cart-btn-minus');
+
+    if (quantity <= 0) {
+        $btn.attr('disabled', 'disabled');
+
+        return false;
+    }
+
+    $btn.removeAttr('disabled');
+
+    return true;
+}
+function changeBtnPlusQuantityDisabledAttribute(quantity) {
+    var $btn = $('.add-cart-btn-plus');
+
+    if (quantity > getRootItemQuantity()) {
+        $btn.attr('disabled', 'disabled');
+
+        return false;
+    }
+
+    $btn.removeAttr('disabled');
+
+    return true;
 }

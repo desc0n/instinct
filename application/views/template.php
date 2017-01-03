@@ -10,7 +10,7 @@
     <link rel="icon" href="/public/i/fav.png" sizes="38x38" type="image/png">
     <!-- Bootstrap -->
     <link href="/public/css/bootstrap.css?v=2" rel="stylesheet">
-    <link href="/public/css/custom.css?v=4" rel="stylesheet">
+    <link href="/public/css/custom.css?v=5" rel="stylesheet">
     <link rel="stylesheet" href="/public/css/jquery.rollbar.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="/public/js/jquery.rollbar.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/public/js/bootstrap.js"></script>
-    <script src="/public/js/scripts.js?v=3"></script>
+    <script src="/public/js/scripts.js?v=4"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             $('.page').rollbar({zIndex:80});

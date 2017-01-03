@@ -211,8 +211,8 @@ header {
     margin: 2px;
 }
 .market {
-    background-image: url("/public/i/market_fon.png");
-    background-repeat: repeat;
+    /*background-image: url("/public/i/market_fon.png");*/
+    background: #eee;
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -267,13 +267,23 @@ footer h2 {
 .like img {
     width: 20px;
 }
+.item-buttons {
+    margin-top: 10px;
+}
 .btn-sale {
     background: #E31E24;
     color: #fff;
-    margin-top: 5px;
 }
 .btn-sale img {
     width: 15px;
+}
+.add-cart-btn-minus,
+.add-cart-btn-plus {
+    background: #E31E24;
+    color: #fff;
+}
+#cartQuantity {
+    text-align: center;
 }
 .pagination-row {
     background: #898989;

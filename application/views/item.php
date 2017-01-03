@@ -20,9 +20,32 @@
                 <div class="row">
                     <div class="item-price pull-right"><strong><?=Arr::get($itemData, 'price');?> руб.</strong></div>
                 </div>
-                <div class="row">
-                    <button class="btn btn-danger btn-sale" value="<?=Arr::get($itemData, 'id');?>">Купить <img src="/public/i/cart-icon.png"></button>
+                <div class="row item-buttons">
+                    <div class="col-lg-5">
+                        <?if((int)Arr::get($itemData, 'quantity', 0) === 0) {?>
+                        <strong>нет в наличии</strong>
+                        <?} else {?>
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger add-cart-btn-minus" type="button" disabled>
+                                    <span class="glyphicon glyphicon-minus"></span>
+                                </button>
+                            </span>
+                            <input type="text" class="form-control" id="cartQuantity" value="1">
+                            <input type="hidden" id="rootItemQuantity" value="<?=Arr::get($itemData, 'quantity');?>">
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger add-cart-btn-plus" type="button" <?=((int)Arr::get($itemData, 'quantity', 1) === 1 ? 'disabled' : null);?>>
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                            </span>
+                        </div>
+                        <?}?>
+                    </div>
+                    <div class="col-lg-7">
+                        <button class="btn btn-danger btn-sale">Купить <img src="/public/i/cart-icon.png"></button>
+                    </div>
                 </div>
+                <input type="hidden" id="noticeId" value="<?=Arr::get($itemData, 'id');?>">
             </div>
         </div>
     </div>

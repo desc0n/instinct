@@ -7,7 +7,9 @@ class Controller_Ajax extends Controller
         /** @var $cartModel Model_Cart */
         $cartModel = Model::factory('Cart');
 
-        $cartModel->addToCart($this->request->post('noticeId'));
+        $cartId = $cartModel->addToCart($this->request->post('noticeId'));
+        $cartModel->setCartNum($cartId, (int)$this->request->post('quantity'));
+
 		$this->response->body('ok');
 	}
 
