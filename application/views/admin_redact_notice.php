@@ -44,6 +44,13 @@ $noticeModel = Model::factory('Notice');
                         <input type="text" name="price" class="price-form form-control" value="<?=Arr::get($notice_info,'price',0);?>">
                     </td>
                 </tr>
+                <tr>
+                    <th class="text-left hidden-xs hidden-sm">Количество</th>
+                    <td>
+                        <p class="hidden-lg hidden-md">Количество</p>
+                        <input type="text" name="quantity" class="form-control" value="<?=Arr::get($notice_info,'quantity',0);?>">
+                    </td>
+                </tr>
                 <input type="hidden" name="redactnotice" value="<?=$notice_id;?>">
             </form>
             <tr>

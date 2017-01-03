@@ -106,6 +106,7 @@ class Model_Notice extends Kohana_Model
         		'article' => ':article',
         		'name' => ':name',
 				'price' => ':price',
+				'quantity' => ':quantity',
 				'description' => ':description',
 				'short_description' => ':short_description',
 				'status_id' => 1,
@@ -116,7 +117,8 @@ class Model_Notice extends Kohana_Model
 				':id' => Arr::get($params,'redactnotice'),
 				':article' => Arr::get($params,'article',''),
 				':name' => Arr::get($params,'name',''),
-				':price' => Arr::get($params,'price',''),
+				':price' => Arr::get($params,'price',0),
+				':quantity' => Arr::get($params,'quantity',0),
 				':description' => Arr::get($params,'description',''),
 				':short_description' => Arr::get($params,'short_description',''),
 				':sort' => Arr::get($params, 'sort', 1)
