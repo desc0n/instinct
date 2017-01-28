@@ -104,6 +104,9 @@ $contentModel = Model::factory('Content');
                 ;?>
             </div>
         </div>
+        <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
+            <?=$content;?>
+        </div>
         <div class="col-lg-1 hidden-xs hidden-sm">
             <div class="cards">
                 <div class="cards-title">ФОРМА ОПЛАТЫ</div>

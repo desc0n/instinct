@@ -225,6 +225,8 @@ header {
 .market-content {
     min-height: 660px;
     padding-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 footer {
     padding-bottom: 10px;
@@ -237,8 +239,7 @@ footer h2 {
     min-height: 250px;
 }
 .item-thumb-parent {
-    margin: 10px 30px;
-    padding: 0;
+    margin: auto;
     text-align: center;
 }
 .item-thumb {
@@ -677,4 +678,15 @@ background: #EBECEC;
 .dropdown-menu > li > a:focus {
     text-decoration: none;
     background-color: #333;
+}
+@media (min-width: 768px) {
+    .item-thumb-parent {
+        margin: auto;
+    }
+    .item-thumb {
+        min-height: 175px;
+    }
+    .item-thumb-img img {
+        min-height: 105px;
+    }
 }

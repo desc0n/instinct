@@ -2,8 +2,8 @@
 /** @var $noticeModel Model_Notice */
 $noticeModel = Model::factory('Notice');
 ?>
-<div class="market-content">
-    <div class="col-lg-12">
+<div class="market-content row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <?=$market_content;?>
     </div>
 </div>
