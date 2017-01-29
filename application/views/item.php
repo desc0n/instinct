@@ -42,7 +42,7 @@
                         <?}?>
                     </div>
                     <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                        <button class="btn btn-danger btn-sale">Купить <img src="/public/i/cart-icon.png"></button>
+                        <button class="btn btn-danger btn-sale" onclick="addToCart(getNoticeId(), getCartQuantity());">Купить <img src="/public/i/cart-icon.png"></button>
                     </div>
                 </div>
                 <input type="hidden" id="noticeId" value="<?=Arr::get($itemData, 'id');?>">

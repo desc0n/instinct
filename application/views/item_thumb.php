@@ -11,6 +11,6 @@
         </div>
     </div>
     <div class="item-buttons">
-        <button class="btn btn-danger btn-sale" value="<?=Arr::get($itemData, 'id');?>">Купить <img src="/public/i/cart-icon.png"></button>
+        <button class="btn btn-danger btn-sale" value="<?=Arr::get($itemData, 'id');?>" onclick="addToCart(<?=Arr::get($itemData, 'id');?>, 1);">Купить <img src="/public/i/cart-icon.png"></button>
     </div>
 </div>

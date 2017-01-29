@@ -44,6 +44,14 @@ class Controller_Ajax extends Controller
 		$this->response->body($cartModel->getCartNum());
 	}
 
+    public function action_get_cart_all_price()
+	{
+        /** @var $cartModel Model_Cart */
+        $cartModel = Model::factory('Cart');
+
+		$this->response->body($cartModel->getCartAllPrice());
+	}
+
     public function action_add_review()
 	{
         /**

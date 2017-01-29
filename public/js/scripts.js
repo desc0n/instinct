@@ -1,13 +1,11 @@
 $(document).ready(function() {
-    $('.btn-sale').click(function() {$.post("/ajax/add_to_cart", {noticeId: getNoticeId(), quantity: getCartQuantity()}, function () {getCartNum();if ($('#order-form').length) {location.reload();}});});
-
     $('.position-num').on('input', function() {
         var cartId = $(this).parent().parent().data('cart-id');
         var value = $(this).val();
 
         $.post("/ajax/set_cart_num", {cartId: cartId, value: value}, function (data) {
-            $('#positionNum_' + cartId).val(data);
-            $('#positionSum_' + cartId).html(data * $('#positionPrice_' + cartId).val());
+            $('.table-row-' + cartId + ' .position-num').val(data);
+            $('.table-row-' + cartId + ' .position-sum').html(data * $('.table-row-' + cartId + ' .position-price').val());
 
             rewriteAllPrice();
             getCartNum();
@@ -18,7 +16,7 @@ $(document).ready(function() {
         var cartId = $(this).parent().parent().data('cart-id');
 
         $.post("/ajax/remove_from_cart", {cartId: cartId}, function (data) {
-            $('#tableRow_' + cartId).remove();
+            $('.table-row-' + cartId).remove();
 
             rewriteAllPrice();
             getCartNum();
@@ -91,19 +89,14 @@ $(document).ready(function() {
 });
 
 function rewriteAllPrice(){
-    var positionsPrices = $('.position-price');
-    var positionsNum = $('.position-num');
-    var allPrice = 0;
-
-    if(positionsPrices.length > 0) {
-        for (i=0;i<positionsPrices.length;i++){
-            allPrice += positionsPrices[i].value * positionsNum[i].value;
-        }
-    }
-
-    $('#allPrice').html(allPrice);
+    $.ajax({type: 'POST', url: '/ajax/get_cart_all_price', async: true, data:{}})
+        .done(function(allPrice){
+            $('.all-price').html(allPrice);
+        });
 }
-
+function addToCart(noticeId, quantity) {
+    $.ajax({url:"/ajax/add_to_cart", data: {noticeId: noticeId, quantity: quantity}, type: 'POST', async: true}).done(function () {getCartNum();if ($('#order-form').length) {location.reload();}});
+}
 function getCartNum(){
     $.ajax({type: 'POST', url: '/ajax/get_cart_num', async: true, data:{}})
     .done(function(data){

@@ -157,7 +157,25 @@ class Model_Cart extends Kohana_Model
             ->current()
         ;
 
-        return Arr::get($res, 'num', 0);
+        return (int)Arr::get($res, 'num', 0);
+    }
+
+    /**
+     * @return int
+     */
+    public function getGuestCartAllPrice()
+    {
+        $res = DB::select([DB::expr('SUM(c.num * n.price) '), 'all_price'])
+            ->from(['cart', 'c'])
+            ->join(['notice', 'n'])
+            ->on('n.id', '=', 'c.notice_id')
+            ->where('c.show', '=', 1)
+            ->and_where('c.guest_id', '=', $this->guestId)
+            ->execute()
+            ->current()
+        ;
+
+        return (int)Arr::get($res, 'all_price', 0);
     }
 
     /**
@@ -166,6 +184,14 @@ class Model_Cart extends Kohana_Model
     public function getCartNum()
     {
         return (int)$this->getGuestCartNum();
+    }
+
+    /**
+     * @return int
+     */
+    public function getCartAllPrice()
+    {
+        return (int)$this->getGuestCartAllPrice();
     }
 
     public function sendOrder($name, $phone, $address, $email)

@@ -6,7 +6,7 @@
             <td></td>
             <td>Товар</td>
             <td>Цена</td>
-            <td>Количество</td>
+            <td>Кол-во</td>
             <td>Сумма</td>
         </tr>
         </thead>
@@ -18,7 +18,7 @@
         foreach($cart as $cartData) {
             $allPrice += $cartData['price'] * $cartData['num'];
             ?>
-            <tr id="tableRow_<?=$cartData['id'];?>" data-cart-id="<?=$cartData['id'];?>">
+            <tr class="table-row-<?=$cartData['id'];?>" id="tableRow_<?=$cartData['id'];?>" data-cart-id="<?=$cartData['id'];?>">
                 <td class="text-center">
                     <button class="btn btn-danger btn-xs remove-position">x</button>
                 </td>
@@ -27,13 +27,12 @@
                 </td>
                 <td class="item-price">
                     <span><?=$cartData['price'];?></span>
-                    <input type="hidden" class="position-price" id="positionPrice_<?=$cartData['id'];?>" value="<?=$cartData['price'];?>">
                 </td>
-                <td class="item-num">
-                    <input class="form-control position-num" id="positionNum_<?=$cartData['id'];?>" type="text" value="<?=$cartData['num'];?>">
+                <td class="item-num text-center">
+                    <?=$cartData['num'];?>
                 </td>
                 <td class="item-price">
-                    <span  id="positionSum_<?=$cartData['id'];?>"><?=$cartData['price']*$cartData['num'];?></span>
+                    <span class="position-sum" id="positionSum_<?=$cartData['id'];?>"><?=$cartData['price']*$cartData['num'];?></span>
                 </td>
             </tr>
         <?}?>
@@ -44,7 +43,7 @@
                 Товаров в корзине на сумму:
             </td>
             <td class="item-price">
-                <span id="allPrice"><?=$allPrice;?></span>
+                <span id="allPrice" class="all-price"><?=$allPrice;?></span>
             </td>
         </tr>
         </tfoot>
