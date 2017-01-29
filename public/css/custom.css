@@ -506,10 +506,10 @@ background: #EBECEC;
 #order-form {
     background: #D9DADA;
     padding: 20px;
+    margin: 0;
 }
 
 .delivery-type-form {
-    width: 80%;
     margin: auto;
 }
 
@@ -517,17 +517,6 @@ background: #EBECEC;
     margin: 5px 0;
 }
 
-.quest-client-order-form label,
-.quest-client-order-form .form-control {
-    display: inline-block;
-}
-
-.quest-client-order-form label {
-    width: 30%;
-}
-.quest-client-order-form .form-control {
-    width: 70%;
-}
 
 .submit-order-btn-field {
     width: 100%;
@@ -635,6 +624,12 @@ background: #EBECEC;
     color: #E31E24;
     font-size: 6px;
     padding-top: 10px;
+}
+.white-round-btn a,
+.white-round-btn a:hover,
+.white-round-btn a:visited {
+    color: #E31E24;
+    text-decoration: none;
 }
 .xs-header-middle{
     margin: 10px 0;

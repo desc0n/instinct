@@ -83,8 +83,10 @@
             </div>
             <div class="contacts-btn red-cart col-xs-3">
                 <div class="white-round-btn pull-right">
+                    <a href="/cart">
                     Корзина
                     <img src="/public/i/red_cart.png">
+                    </a>
                 </div>
             </div>
         </div>

@@ -54,8 +54,8 @@
             В приведенной ниже форме оставьте, пожалуйста, Ваше имя и телефон (или e-mail),
             по которым наш менеджер сможет связаться с вами для уточнения условий заказа
         </div>
-        <div id="order-form">
-            <div class="delivery-type-form" id="deliveryTypeForm">
+        <div id="order-form" class="row">
+            <div class="delivery-type-form col-lg-12 col-md-12 col-sm-12 col-xs-12" id="deliveryTypeForm">
                 <div class="quest-client-order-form">
                     <label class="pull-left">Ваше имя <span>*</span> :</label>
                     <input class="form-control cart-customer-field" id="name" name="name" type="text" placeholder="Ваше имя" value="">
