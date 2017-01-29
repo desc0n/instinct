@@ -1,6 +1,6 @@
 <div class="item-content">
     <div class="row">
-        <div class="col-lg-5">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
             <?
             $imgs = Arr::get($itemData,'imgs',[]);
             $firstImg = reset($imgs);
@@ -11,8 +11,8 @@
                 </div>
             <?}?>
         </div>
-        <div class="col-lg-7 item-description-body">
-            <div class="col-lg-12">
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 item-description-body">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="row item-title"><?=Arr::get($itemData, 'name');?></div>
                 <div class="row description">
                     <?=Arr::get($itemData, 'description');?>
@@ -21,7 +21,7 @@
                     <div class="item-price pull-right"><strong><?=Arr::get($itemData, 'price');?> руб.</strong></div>
                 </div>
                 <div class="row item-buttons">
-                    <div class="col-lg-5">
+                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
                         <?if((int)Arr::get($itemData, 'quantity', 0) === 0) {?>
                         <strong>нет в наличии</strong>
                         <?} else {?>
@@ -41,7 +41,7 @@
                         </div>
                         <?}?>
                     </div>
-                    <div class="col-lg-7">
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
                         <button class="btn btn-danger btn-sale">Купить <img src="/public/i/cart-icon.png"></button>
                     </div>
                 </div>
