@@ -94,13 +94,13 @@
             <div class="col-xs-7">
                 <a href="/"><img class="header-img" src="/public/i/header_img.png"></a>
             </div>
-            <div class="col-xs-5">
+            <div class="col-xs-5 text-center">
                 <button class="btn btn-default btn-dark">Владивосток</button>
                 <div class="dropdown">
                     <button class="btn btn-default btn-dark dropdown-toggle" data-toggle="dropdown" id="dropdownMenu2">
                         Каталог &nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-chevron-down"></span>
                     </button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
+                    <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu2">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="/public/i/for_her.png"></a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="/public/i/for_him.png"></a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="/public/i/for_two.png"></a></li>
