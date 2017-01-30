@@ -85,6 +85,51 @@ $(document).ready(function() {
     $('.add-cart-btn-minus').on('click', function () {minusCartQuantity();});
     $('.add-cart-btn-plus').on('click', function () {plusCartQuantity();});
 
+    $('#regBtn').click(function () {
+        var username = $('#regForm #username').val();
+        var email = $('#regForm #email').val();
+        var password = $('#regForm #password').val();
+        var rePassword = $('#regForm #rePassword').val();
+
+        if (username == '') {
+            alert('Не указан логин!');
+
+            return false;
+        }
+
+        if (!isValidEmailAddress(email)) {
+            alert('Некорректный адрес электронной почты!');
+
+            return false;
+        }
+
+        if (password != rePassword) {
+            alert('Пароли не совпадают!');
+
+            return false;
+        }
+
+        if (checkIssetUsername(username) == 1) {
+            alert('Такой логин существует!');
+
+            return false;
+        }
+
+        if (checkIssetEmail(email) == 1) {
+            alert('Такая почта существует!');
+
+            return false;
+        }
+
+        $.post(
+            '/ajax/registration',
+            {username: username, email: email, password: password},
+            function () {
+                location.reload();
+            }
+        );
+    });
+
     getCartNum();
 });
 
@@ -166,4 +211,22 @@ function changeBtnPlusQuantityDisabledAttribute(quantity) {
     $btn.removeAttr('disabled');
 
     return true;
+}
+
+function isValidEmailAddress(email) {
+    var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+    return pattern.test(email);
+}
+
+function isValidPhone(phone) {
+    var pattern = new RegExp(/^[+7]{2}\d{10}$/i);
+    return pattern.test(phone);
+}
+
+function checkIssetUsername(username) {
+    return $.ajax({url: '/ajax/check_isset_username', data: {username: username}, type: 'POST', async: false}).responseText;
+}
+
+function checkIssetEmail(email) {
+    return $.ajax({url: '/ajax/check_isset_email', data: {email: email}, type: 'POST', async: false}).responseText;
 }

@@ -95,6 +95,12 @@ header {
     box-shadow: #575858 0 0 2px;
     background: linear-gradient(to top, #E31E24, #F5B2B6, #E31E24);
 }
+.btn-input a,
+.btn-input a:hover, 
+.btn-input a:visited {
+    text-decoration: none;
+    color: #000;
+}
 .news-articles {
     width: 100%;
     margin: 10px 0;
@@ -695,4 +701,10 @@ background: #EBECEC;
     .cart-table {
         font-size: 12px;
     }
+}
+.form {
+    margin-top: 20px;
+}
+.btn-danger{
+    background: #E31E24;
 }

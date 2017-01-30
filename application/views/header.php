@@ -38,7 +38,15 @@
                 </div>
             </div>
             <div class="col-lg-3 text-center">
-                <div class="btn-input" href="/input">Вход и регистрация</div>
+                <?if(!Auth::instance()->logged_in()) {?>
+                    <div class="btn-input">
+                        <a class="" data-toggle="modal" href="#loginModal">Вход и регистрация</a>
+                    </div>
+                <?} else {?>
+                    <div class="btn-input">
+                        <a class="btn-input" href="#">Личный кабинет</a>
+                    </div>
+                <?}?>
                 <div class="news-articles">
                     <h2>Статьи</h2>
                 </div>
@@ -114,7 +122,11 @@
         </div>
         <div class="xs-header-search col-xs-12 row">
             <div class="col-xs-5">
+                <?if(!Auth::instance()->logged_in()) {?>
+                <button class="btn btn-default btn-dark" data-toggle="modal" href="#loginModal">Личный кабинет</button>
+                <?} else {?>
                 <button class="btn btn-default btn-dark">Личный кабинет</button>
+                <?}?>
             </div>
             <div class="col-xs-7">
                 <div class="input-group">

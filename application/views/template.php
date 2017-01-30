@@ -134,5 +134,60 @@ $contentModel = Model::factory('Content');
         </div>
     </div>
 </div>
+<div class="modal fade" id="loginModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Войти</h4>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab1" data-toggle="tab">Вход</a></li>
+                    <li><a href="#tab2" data-toggle="tab">Регистрация</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab1">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                <form class="form" method="post" action="/">
+                                    <div style="margin-bottom: 25px" class="form-group">
+                                        <input name="username" class="form-control" placeholder="Ваш логин" required="">
+                                    </div>
+                                    <div style="margin-bottom: 25px" class="form-group">
+                                        <input name="password" type="password" class="form-control" placeholder="Ваш пароль" required="">
+                                    </div>
+                                    <button class="btn btn-lg btn-danger btn-block" type="submit" name="login">Вход</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab2">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 form" id="regForm">
+                                <div style="margin-bottom: 25px" class="form-group">
+                                    <input id="username" class="form-control" placeholder="Логин" required="">
+                                </div>
+                                <div style="margin-bottom: 25px" class="form-group">
+                                    <input id="email" class="form-control" placeholder="E-mail" required="">
+                                </div>
+                                <div style="margin-bottom: 25px" class="form-group">
+                                    <input id="password" type="password" class="form-control" placeholder="Пароль" required="">
+                                </div>
+                                <div style="margin-bottom: 25px" class="form-group">
+                                    <input id="rePassword" type="password" class="form-control" placeholder="Подтвердить пароль" required="">
+                                </div>
+                                <button class="btn btn-lg btn-danger btn-block" id="regBtn">Зарегистрироваться</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 </body>
 </html>

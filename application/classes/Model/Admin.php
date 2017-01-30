@@ -725,5 +725,58 @@ class Model_Admin extends Kohana_Model
             ->param(':notice_id', Arr::get($params, 'addhit'))
             ->execute();
     }
+
+    /**
+     * @param $username
+     * @return mixed
+     */
+    public function findUserByUsername($username)
+    {
+        return DB::select()
+            ->from('users')
+            ->where('username', '=', $username)
+            ->limit(1)
+            ->execute()
+            ->current()
+            ;
+    }
+
+    /**
+     * @param $email
+     * @return mixed
+     */
+    public function findUserByEmail($email)
+    {
+        return DB::select()
+            ->from('users')
+            ->where('email', '=', $email)
+            ->limit(1)
+            ->execute()
+            ->current()
+            ;
+    }
+
+    public function registerUser($username, $email, $password)
+    {
+        $user = ORM::factory('User');
+        $user->values([
+            'username' => $username,
+            'email' => $email,
+            'password' => $password,
+            'password_confirm' => $password,
+        ]);
+
+        try {
+            $user->save();
+            $user->add("roles",ORM::factory("Role",1));
+        }
+        catch (ORM_Validation_Exception $e) {
+            $e->errors('models');
+        }
+
+        if (!Auth::instance()->logged_in()) {
+            Auth::instance()->login($username, $password,true);
+        }
+    }
 }
 ?>
