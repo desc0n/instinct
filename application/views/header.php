@@ -44,7 +44,7 @@
                     </div>
                 <?} else {?>
                     <div class="btn-input">
-                        <a class="btn-input" href="#">Личный кабинет</a>
+                        <a class="" href="#">Личный кабинет</a>
                     </div>
                 <?}?>
                 <div class="news-articles">
