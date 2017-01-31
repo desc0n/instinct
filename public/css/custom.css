@@ -39,6 +39,18 @@ header {
     cursor: pointer;
     box-shadow: #575858 0 0 2px;
 }
+@media (min-width: 992px){
+    .menu-item {
+        width: 120px!important;
+        font-size: 11px;
+    }
+}
+@media (min-width: 1200px){
+    .menu-item {
+        width: 153px!important;
+        font-size: 14px;
+    }
+}
 .menu-item {
     background: linear-gradient(to top, #C5C6C6, #ffffff, #C5C6C6);
 }
@@ -162,8 +174,27 @@ header {
     padding: 5px;
     text-align: center;
 }
+
 .category-btns a img {
     height: 100%;
+}
+@media (min-width: 992px){
+    .category-btns a {
+        width: 125px!important;
+    }
+    .category-btns a img {
+        height: 100%;
+        width: 100%;
+    }
+}
+@media (min-width: 1200px){
+    .category-btns a {
+        width: 156px!important;
+    }
+    .category-btns a img {
+        height: 100%;
+        width: auto;
+    }
 }
 .catalog-list {
     background-color: #727271;

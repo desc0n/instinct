@@ -59,7 +59,7 @@ $contentModel = Model::factory('Content');
 ?>
 <div class="container">
     <div class="row">
-        <div class="col-lg-3 hidden-xs hidden-sm">
+        <div class="col-lg-3 col-md-3 hidden-xs hidden-sm">
             <div class="catalog-list" id="accordion">
                 <h3 class="text-center">Каталог</h3>
                 <?foreach ($categories as $category) {?>
@@ -83,7 +83,7 @@ $contentModel = Model::factory('Content');
                 <?}?>
             </div>
         </div>
-        <div class="col-lg-8 hidden-xs hidden-sm">
+        <div class="col-lg-8 col-md-8 hidden-xs hidden-sm">
             <div class="market">
                 <div class="market-head-content">
                     <button class="btn btn-danger offer-phone">
@@ -110,7 +110,7 @@ $contentModel = Model::factory('Content');
         <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
             <?=$content;?>
         </div>
-        <div class="col-lg-1 hidden-xs hidden-sm">
+        <div class="col-lg-1 col-md-1 hidden-xs hidden-sm">
             <div class="cards">
                 <div class="cards-title">ФОРМА ОПЛАТЫ</div>
                 <div class="cards-list">

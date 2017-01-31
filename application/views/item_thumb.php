@@ -1,4 +1,4 @@
-<div class="item-thumb-parent col-lg-3 col-xs-6 col-sm-3">
+<div class="item-thumb-parent col-lg-3 col-md-4 col-xs-6 col-sm-3">
     <div class="item-thumb">
         <div class="like">
             <img src="/public/i/heart.png">

@@ -12,7 +12,7 @@
             <?}?>
         </div>
         <div class="row">
-            <div class="col-lg-3 text-center">
+            <div class="col-lg-3 col-md-3 text-center">
                 <div class="question">
                     <p>Вам есть 18 лет?</p>
                     <p>
@@ -24,7 +24,7 @@
                     <h2>Новости</h2>
                 </div>
             </div>
-            <div class="col-lg-6 text-center">
+            <div class="col-lg-6 col-md-6 text-center">
                 <a href="/"><img class="header-img" src="/public/i/header_img.png"></a>
                 <h1 class="header-phone">Тел. 2-97-77-15</h1>
                 <div class="header-search">
@@ -37,7 +37,7 @@
                     <button class="btn btn-warning">АКЦИЯ!</button>
                 </div>
             </div>
-            <div class="col-lg-3 text-center">
+            <div class="col-lg-3 col-md-3 text-center">
                 <?if(!Auth::instance()->logged_in()) {?>
                     <div class="btn-input">
                         <a class="" data-toggle="modal" href="#loginModal">Вход и регистрация</a>
